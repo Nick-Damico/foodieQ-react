@@ -21,9 +21,13 @@ class RecipesContainer extends Component {
   }
 
   render() {
+    const recipesLis = this.state.recipes.map((recipe,i) => <li key={i} className="recipe">{recipe.name}</li>)
     return (
       <div className="recipes-container">
-        recipes
+        <h2> Recipes </h2>
+        <ul className="recipes">
+          {recipesLis}
+        </ul>
       </div>
     )
   };
