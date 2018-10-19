@@ -10,7 +10,7 @@ class RecipesContainer extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3001/api/v1/recipes')
+    axios.get('https://foodie-q.herokuapp.com/api/v1/recipes')
     .then(response => {
       console.log(response);
       this.setState({
