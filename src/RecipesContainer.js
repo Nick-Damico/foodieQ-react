@@ -21,12 +21,12 @@ class RecipesContainer extends Component {
   }
 
   render() {
-    const recipesLis = this.state.recipes.map((recipe,i) => {
+    const recipesLis = this.state.recipes.map((recipe,i) =>
       <li key={i} className="recipe">
         <h3 className="recipe-name">{recipe.name}</h3>
         <p className="recipe-description">{recipe.description}</p>
       </li>
-    )};
+    );
     return (
       <div className="recipes-container">
         <h2> Recipes </h2>
