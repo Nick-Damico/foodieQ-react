@@ -12,7 +12,6 @@ class RecipesContainer extends Component {
   componentDidMount() {
     axios.get('https://foodie-q.herokuapp.com/api/v1/recipes.json')
     .then(response => {
-      console.log(response);
       this.setState({
         recipes: response.data
       })
@@ -23,15 +22,15 @@ class RecipesContainer extends Component {
   render() {
     const recipesLis = this.state.recipes.map((recipe,i) =>
       <li key={i} className="recipe">
-        <h3 className="recipe-name">{recipe.name}</h3>
-        <p className="recipe-description">{recipe.description}</p>
+        <h3>{recipe.name}</h3>
+        <p>{recipe.description}</p>
       </li>
-    );
+    )
     return (
       <div className="recipes-container">
         <h2> Recipes </h2>
         <ul className="recipes">
-          {recipesLis}
+          {recipesLis.length === 0 ? 'Loading...' : recipesLis}
         </ul>
       </div>
     )
