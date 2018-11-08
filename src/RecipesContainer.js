@@ -10,13 +10,13 @@ class RecipesContainer extends Component {
   }
 
   componentDidMount() {
-    axios.get('/recipes.json')
-    .then(response => {
-      this.setState({
-        recipes: response.data
-      })
-    })
-    .catch(error => console.log(error))
+    // axios.get('/recipes.json')
+    // .then(response => {
+    //   this.setState({
+    //     recipes: response.data
+    //   })
+    // })
+    // .catch(error => console.log(error))
   }
 
   render() {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import RecipesContainer from './RecipesContainer';
+import LoginForm from './components/LoginForm';
 import bgOne from './bg-one.jpg';
 import bgTwo from './bg-two.jpg';
 import bgThree from './bg-three.jpg';
@@ -48,6 +49,7 @@ class App extends Component {
           <h1 className="app-title">FoodieQ</h1>
         </header>
         <RecipesContainer />
+        <LoginForm />
       </div>
     );
   }
