@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import jquery from 'jquery';
 
 class LoginForm extends Component {
   login = (e) => {
@@ -8,16 +8,16 @@ class LoginForm extends Component {
     const password = document.querySelector('#password').value;
      const request = {"auth": {"email": email, "password": password}}
      console.log(request);
-    axios.post('http://localhost:3001/api/v1/user_token', {
-      dataType: 'json',
-      data: request
+    $.ajax({
+      url: "http://localhost:3000/api/v1/user_token",
+      type: "POST",
+      data: request,
+      dataType: "json",
+      success: function (result) {
+        console.log(result)
+        localStorage.setItem("jwt", result.jwt)
+      }
     })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
   }
   render() {
     return(
