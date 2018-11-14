@@ -11,7 +11,7 @@ class LoginForm extends Component {
      console.log(request);
      axios({
        method: 'post',
-       url: '/user_token',
+       url: '/login',
        data: {
          auth: {
            email: email,
@@ -19,10 +19,13 @@ class LoginForm extends Component {
          }
        }
      })
-     .then(function (response) {
-       console.log(response.data);
+     .then((response) => {
+      localStorage.clear();
+      const token = response.data.jwt;
+      localStorage.setItem("token", token)
+      console.log(localStorage);
      })
-     .catch(function (error) {
+     .catch((error) => {
        console.log(error);
      });
   }
