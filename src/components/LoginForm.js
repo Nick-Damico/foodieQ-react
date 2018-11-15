@@ -7,8 +7,6 @@ class LoginForm extends Component {
     e.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-     const request = {"auth": {"email": email, "password": password}}
-     console.log(request);
      axios({
        method: 'post',
        url: '/login',
