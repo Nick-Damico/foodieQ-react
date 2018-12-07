@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import RecipesContainer from './RecipesContainer';
+
+import SignupForm from './components/SignupForm';
 import LoginForm from './components/LoginForm';
 import bgOne from './bg-one.jpg';
 import bgTwo from './bg-two.jpg';
@@ -25,7 +26,6 @@ class App extends Component {
   componentDidMount() {
     let i = 1;
     this.interval = setInterval(() => {
-      console.log(i);
       this.setState({ background: pics[i] })
       if(i < pics.length - 1) {
         i++;
@@ -41,14 +41,12 @@ class App extends Component {
 
   render() {
     const bg = this.state.background;
-    console.log(bg);
     return (
       <div className="App">
         <header className="App-header" style={{backgroundImage: `url(${bg})`}}>
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="app-title">FoodieQ</h1>
         </header>
-        <RecipesContainer />
         <LoginForm />
       </div>
     );

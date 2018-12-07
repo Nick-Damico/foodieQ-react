@@ -1,35 +1,52 @@
 import React, { Component } from 'react';
-// import $ from 'jquery';
 import axios from 'axios';
+
+const form = {
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  alignItems:     'center',
+  background: 'rgba(20,200,100,1)',
+  padding: 20
+}
+
+const btn = {
+  background: 'tomato',
+  fontSize:   '1.1rem',
+  color:      'white',
+  padding:    '8px 20px',
+  outline:    'none',
+  border:     'none'
+}
 
 class LoginForm extends Component {
   login = (e) => {
     e.preventDefault();
     const email = document.querySelector('#email').value;
     const password = document.querySelector('#password').value;
-     axios({
-       method: 'post',
-       url: '/login',
-       data: {
-         auth: {
-           email: email,
-           password: password
-         }
-       }
-     })
-     .then((response) => {
+    axios({
+      method: 'post',
+      url: '/auth',
+      data: {
+        user: {
+          email: email,
+          password: password
+        }
+      }
+    })
+    .then((response) => {
       localStorage.clear();
-      const token = response.data.jwt;
+      const token = response.data.token;
       localStorage.setItem("token", token)
       console.log(localStorage);
-     })
-     .catch((error) => {
-       console.log(error);
-     });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
   render() {
     return(
-      <form className="login-form">
+      <form className="login-form" style={form}>
         <input
           id="email"
           type="email"
@@ -46,7 +63,7 @@ class LoginForm extends Component {
           autoComplete="true"
         />
         <br />
-        <button onClick={this.login}>Login</button>
+        <button onClick={this.login} style={btn}>Login</button>
       </form>
     )
   };
