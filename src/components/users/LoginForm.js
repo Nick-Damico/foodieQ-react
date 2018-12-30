@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Button } from 'reactstrap';
 
 const form = {
   display: 'flex',
@@ -63,7 +64,7 @@ class LoginForm extends Component {
           autoComplete="true"
         />
         <br />
-        <button onClick={this.login} style={btn}>Login</button>
+        <Button onClick={this.login} style={btn}>Login</Button>
       </form>
     )
   };
