@@ -1,10 +1,11 @@
-import './App.css';
-import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-
-import MainHeader from './MainHeader';
-import SignupForm from './users/SignupForm';
-import LoginForm from './users/LoginForm';
+import "./App.css";
+import React, { Component } from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+// Components
+import MainHeader from  "./MainHeader";
+import SignupForm from  "./users/SignupForm";
+import LoginForm from   "./users/LoginForm";
+import GoogleAuth from  "./users/GoogleAuth";
 
 class App extends Component {
   render() {
@@ -14,11 +15,12 @@ class App extends Component {
           <div>
             <MainHeader />
             <LoginForm />
+            <GoogleAuth />
           </div>
         </BrowserRouter>
       </div>
     );
-  }
-}
+  };
+};
 
 export default App;
