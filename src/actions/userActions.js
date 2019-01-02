@@ -7,9 +7,11 @@ export const logInUser = user => {
     const response = await axios.post("http://localhost:3001/api/v1/auth", {
       user: { email: user.email, password: user.password }
     });
-
-    dispatch({ type: APP_SIGN_IN, payload: response });
-    dispatch({ type: SET_CURRENT_USER, payload: response });
+    if (response.status === 200) {
+      localStorage.setItem('token', response.data.token);    
+      dispatch({ type: APP_SIGN_IN, payload: response });
+      dispatch({ type: SET_CURRENT_USER, payload: response });
+    }
   };
 };
 
