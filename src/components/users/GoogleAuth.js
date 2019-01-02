@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../../actions";
 
 class GoogleAuth extends Component {
-  state = { isSignedIn: null };
-
   componentDidMount() {
     window.gapi.load("client:auth2", () => {
       window.gapi.client
@@ -13,35 +13,56 @@ class GoogleAuth extends Component {
         })
         .then(() => {
           this.auth = window.gapi.auth2.getAuthInstance();
-          this.setState({ isSignedIn: this.auth.isSignedIn.get() });
+          this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
         });
     });
+  }
+
+  onAuthChange = (isSignedIn) => {
+    if (isSignedIn) {
+      this.props.signIn(this.auth.currentUser.get());
+    } else {
+      this.props.signOut();
+    }
   };
 
-  onAuthChange = () => {
-    this.setState({ isSignedIn: this.auth.isSignedIn.get() });
-  };
-
-  onSignIn = () => {
+  onSignInClick = () => {
     this.auth.signIn();
   };
 
-  onSignOut = () => {
+  onSignOutClick = () => {
     this.auth.signOut();
   };
 
   render() {
-    if (this.state.isSignedIn) {
+    if (this.props.isSignedIn) {
       return (
         <div>
-          <span>Your are signed In <Button onClick={this.onSignOut}>Sign Out</Button></span>
+          <span>
+            Your are signed In{" "}
+            <Button onClick={this.onSignOutClick}>Sign Out</Button>
+          </span>
         </div>
       );
-    };
+    }
 
-    return <Button onClick={this.onSignIn} color="danger">Login with Google</Button>;
+    return (
+      <Button onClick={this.onSignInClick} color="danger">
+        Login with Google
+      </Button>
+    );
   }
 }
 
-export default GoogleAuth;
+const mapStateToProps = state => {
+  return {
+    isSignedIn: state.auth.isSignedIn,
+    userEmail:  state.auth.userEmail
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { signIn, signOut }
+)(GoogleAuth);
