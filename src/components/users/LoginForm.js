@@ -1,59 +1,32 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import { Button } from 'reactstrap';
-
-const form = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-between',
-  alignItems:     'center',
-  background: 'rgba(20,200,100,1)',
-  padding: 20
-}
-
-const btn = {
-  background: 'tomato',
-  fontSize:   '1.1rem',
-  color:      'white',
-  padding:    '8px 20px',
-  outline:    'none',
-  border:     'none'
-}
+import React, { Component } from "react";
+import './loginForm.css';
+import { Button } from "reactstrap";
+import { connect } from "react-redux";
+import { logInUser, setCurrentUser } from "../../actions";
 
 class LoginForm extends Component {
-  login = (e) => {
+  state = {email: '', password: ''}
+
+  handleOnSubmit = e => {
     e.preventDefault();
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
-    axios({
-      method: 'post',
-      url: '/auth',
-      data: {
-        user: {
-          email: email,
-          password: password
-        }
-      }
-    })
-    .then((response) => {
-      localStorage.clear();
-      const token = response.data.token;
-      localStorage.setItem("token", token)
-      console.log(localStorage);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
-  render() {
-    return(
-      <form className="login-form" style={form}>
+    const user = {
+      email: this.state.email,
+      password: this.state.password
+    }
+    this.props.logInUser(user);
+  };
+
+  renderForm() {
+    return (
+      <form className="login-form" onSubmit={this.handleOnSubmit}>
         <input
           id="email"
           type="email"
           name="email"
           placeholder="Email"
           autoComplete="true"
+          value={this.state.email}
+          onChange={e => this.setState({email: e.target.value})}
         />
         <br />
         <input
@@ -62,12 +35,37 @@ class LoginForm extends Component {
           name="password"
           placeholder="Password"
           autoComplete="true"
+          value={this.state.password}
+          onChange={e => this.setState({password: e.target.value})}
         />
         <br />
-        <Button onClick={this.login} style={btn}>Login</Button>
+        <Button color="primary">
+          Login
+        </Button>
       </form>
     )
+  }
+
+  renderGreeting() {
+    return <div>Welcome</div>
+  }
+
+  render() {
+    if (this.props.isSignedIn) {
+      return this.renderGreeting();
+    } else {
+      return this.renderForm();
+    }
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    isSignedIn: state.auth.isSignedIn
   };
 };
 
-export default LoginForm;
+export default connect(
+  mapStateToProps,
+  { logInUser, setCurrentUser }
+)(LoginForm);
