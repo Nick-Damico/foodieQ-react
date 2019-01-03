@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   APP_SIGN_IN,
   APP_SIGN_OUT,
+  APP_SIGN_IN_ERROR,
   SET_CURRENT_USER
 } from "./types";
 
@@ -10,11 +11,18 @@ export const logInUser = user => {
   return async dispatch => {
     const response = await axios.post("http://localhost:3001/api/v1/auth", {
       user: { email: user.email, password: user.password }
-    });
-    if (response.status === 200) {
-      localStorage.setItem("token", response.data.token);
-      dispatch({ type: APP_SIGN_IN });
-      dispatch({ type: SET_CURRENT_USER, payload: response });
+    })
+    .catch(error => {
+      dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data})
+    })
+    if (response) {      
+      if (response.payload.status > 200) {
+
+      } else if (response.status === 200) {
+        localStorage.setItem("token", response.data.token);
+        dispatch({ type: APP_SIGN_IN });
+        dispatch({ type: SET_CURRENT_USER, payload: response });
+      }
     }
   };
 };
