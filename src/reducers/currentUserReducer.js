@@ -1,8 +1,7 @@
 import { SET_CURRENT_USER, APP_SIGN_OUT } from "../actions/types";
 const INITIAL_STATE = {
   id: null,
-  email: null,
-  token: null
+  email: null
 };
 
 export default (state = INITIAL_STATE, action) => {
