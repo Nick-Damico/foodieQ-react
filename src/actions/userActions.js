@@ -1,5 +1,9 @@
 import axios from "axios";
-import { APP_SIGN_IN, SET_CURRENT_USER } from "./types";
+import {
+  APP_SIGN_IN,
+  APP_SIGN_OUT,
+  SET_CURRENT_USER
+} from "./types";
 
 // Login To Api App, success should dispatch(SIGN_IN)
 export const logInUser = user => {
@@ -8,15 +12,13 @@ export const logInUser = user => {
       user: { email: user.email, password: user.password }
     });
     if (response.status === 200) {
-      localStorage.setItem('token', response.data.token);    
-      dispatch({ type: APP_SIGN_IN, payload: response });
+      localStorage.setItem("token", response.data.token);
+      dispatch({ type: APP_SIGN_IN });
       dispatch({ type: SET_CURRENT_USER, payload: response });
     }
   };
 };
 
 export const setCurrentUser = () => {
-  return {
-    type: SET_CURRENT_USER
-  };
+  return { type: SET_CURRENT_USER };
 };
