@@ -1,10 +1,14 @@
-import { GOOGLE_SIGN_IN, GOOGLE_SIGN_OUT, SET_CURRENT_USER } from "./types";
-import { buildGoogleUser } from './actionHelpers';
+import {
+  APP_SIGN_IN,
+  APP_SIGN_OUT,
+  SET_CURRENT_USER
+} from "./types";
+import { buildGoogleUser } from "./actionHelpers";
 
 export const signIn = user => {
   const response = buildGoogleUser(user);
   return dispatch => {
-    dispatch({ type: GOOGLE_SIGN_IN });
+    dispatch({ type: APP_SIGN_IN });
     dispatch({
       type: SET_CURRENT_USER,
       payload: response
@@ -13,7 +17,5 @@ export const signIn = user => {
 };
 
 export const signOut = () => {
-  return {
-    type: GOOGLE_SIGN_OUT
-  };
+  return { type: APP_SIGN_OUT };
 };

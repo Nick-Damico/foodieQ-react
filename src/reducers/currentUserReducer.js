@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from "../actions/types";
+import { SET_CURRENT_USER, APP_SIGN_OUT } from "../actions/types";
 const INITIAL_STATE = {
   id: null,
   email: null,
@@ -11,9 +11,10 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         id: action.payload.data.user.id,
-        email: action.payload.data.user.email,
-        token: action.payload.data.token
+        email: action.payload.data.user.email
       };
+    case APP_SIGN_OUT:
+      return INITIAL_STATE
     default:
       return state;
   }
