@@ -1,8 +1,8 @@
 import { GOOGLE_SIGN_IN, GOOGLE_SIGN_OUT, SET_CURRENT_USER } from "./types";
-import { buildUser } from './actionHelpers';
+import { buildGoogleUser } from './actionHelpers';
 
 export const signIn = user => {
-  const response = buildUser(user);
+  const response = buildGoogleUser(user);
   return dispatch => {
     dispatch({ type: GOOGLE_SIGN_IN });
     dispatch({

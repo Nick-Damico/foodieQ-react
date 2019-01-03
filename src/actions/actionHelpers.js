@@ -1,4 +1,4 @@
-export const buildUser = user => {
+export const buildGoogleUser = user => {
   let profile = user.getBasicProfile();
   return {
     data: {
