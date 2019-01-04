@@ -5,6 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import MainHeader from  "./MainHeader";
 import SignupForm from  "./users/SignupForm";
 import NavigationBar from "./NavigationBar";
+import SiteOverlay from './SiteOverlay';
 
 class App extends Component {
   render() {
@@ -14,6 +15,7 @@ class App extends Component {
           <div>
             <NavigationBar />
             <MainHeader />
+            <SiteOverlay />
           </div>
         </BrowserRouter>
       </div>
