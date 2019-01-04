@@ -39,7 +39,7 @@ const SiteOverlay = ({ isOverlayOpen, toggleOverlay }) => {
 
 const mapStateToProps = state => {
   return {
-    isOverlayOpen: !state.ui.isOverlayOpen
+    isOverlayOpen: state.ui.isOverlayOpen
   };
 };
 
