@@ -1,7 +1,6 @@
 import axios from "axios";
 import {
   APP_SIGN_IN,
-  APP_SIGN_OUT,
   APP_SIGN_IN_ERROR,
   SET_CURRENT_USER
 } from "./types";
@@ -15,7 +14,7 @@ export const logInUser = user => {
     .catch(error => {
       dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data})
     })
-    if (response) {      
+    if (response) {
       if (response.payload.status > 200) {
 
       } else if (response.status === 200) {
