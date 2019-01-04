@@ -15,7 +15,10 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', serif; }
 
 /* SITE color pallet */
 .blue {
-  background-color: #00882f;
+  background-color: #0882ff;
+}
+.blue-darker {
+  background-color: #006ED5;
 }
 
 .orange {
@@ -36,4 +39,12 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', serif; }
 
 .foodieq-black {
   background-color: #393939;
+}
+
+.text-white {
+  color: #fafafa;
+}
+
+.text-black {
+  color: #393939;
 }
