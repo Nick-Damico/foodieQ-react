@@ -1,0 +1,20 @@
+/* full page overlay for selecting application options */
+.site-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+  transform: translateY(-100%);
+  transition: transform .8s ease-in-out;
+}
+
+.open {
+  -webkit-transform: translateY(0%);
+  transform: translateY(0%);
+}
+
+/* Grid Layout and Adjustments */
+.site-overlay__row-1 {
+  margin-top: 20px;
+}
