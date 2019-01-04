@@ -1,0 +1,47 @@
+.brand-logo {
+  width: 115px;
+}
+
+/* Hamburger icon */
+.hamburger-nav {
+  display: inline-block;
+  cursor: pointer;
+}
+
+[class^="hamburger-nav__bar"] {
+  width: 25px;
+  height: 2px;
+  background-color: #8F8F8F;
+  margin: 6px 8px 6px 0;
+  transition: 0.4s;
+}
+
+/* Navigation */
+.nav-link {
+  margin-right: 4px;
+  transition: all .4s ease;
+}
+
+.btn {
+  border-radius: 8px;
+  border-bottom-width: 4px;
+  border-bottom-style: solid;
+}
+
+.nav-link__login {
+  border-bottom-color: #006ED5;
+}
+
+.nav-link__login:hover {
+  background-color: #006ED5;
+  border-bottom-color: #0882FF;
+}
+
+.nav-link__sign-up {
+  border-bottom-color: #13BE9B;
+}
+
+.nav-link__sign-up:hover {
+  background-color: #13BE9B;
+  border-bottom-color: #1DE8BF;
+}
