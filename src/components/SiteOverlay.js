@@ -13,12 +13,23 @@ const SiteOverlay = ({ isOverlayOpen, toggleOverlay }) => {
     <div className={`site-overlay blue text-white ${overlayActive}`}>
       <Container>
         <Row className="site-overlay__row-1">
-          <Col xs={{ size: 6, offset: 6 }}>
+          <Col className="close-container" xs={{ size: 6, offset: 6 }}>
             <FontAwesomeIcon
               icon="times"
               onClick={() => toggleOverlay()}
               className="site-overlay__close-btn"
             />
+          </Col>
+        </Row>
+        <Row className="site-overlay__row-2">
+          <Col xs={{ size: 8, offset: 2}}>
+            <div>
+              <h4>Welcome to FoodieQ</h4>
+              <FontAwesomeIcon
+              icon="user-circle"
+              className="user-icon"
+              />
+            </div>
           </Col>
         </Row>
       </Container>
@@ -28,7 +39,7 @@ const SiteOverlay = ({ isOverlayOpen, toggleOverlay }) => {
 
 const mapStateToProps = state => {
   return {
-    isOverlayOpen: state.ui.isOverlayOpen
+    isOverlayOpen: !state.ui.isOverlayOpen
   };
 };
 
