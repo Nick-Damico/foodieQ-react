@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from '../images/logo.svg';
 import bgOne from '../images/bg-one.jpg';
 import bgTwo from '../images/bg-two.jpg';
 import bgThree from '../images/bg-three.jpg';
@@ -42,7 +41,6 @@ export default class MainHeader extends Component {
     const bg = this.state.background;
     return(
       <header className="App-header" style={{backgroundImage: `url(${bg})`}}>
-        <img src={logo} className="App-logo" alt="logo" />
         <h1 className="app-title">FoodieQ</h1>
       </header>
     )
