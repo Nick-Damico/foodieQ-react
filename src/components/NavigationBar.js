@@ -1,21 +1,14 @@
 import React, { Component } from "react";
-import {Link} from 'react-router-dom';
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import logo from "../images/foodieq-logo.svg";
-import {
-  Navbar,
-  NavbarBrand,
-  Nav,
-  NavItem
-} from "reactstrap";
+import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 import "./NavigationBar.css";
+import { toggleOverlay } from "../actions";
 
 class NavigationBar extends Component {
-  state = { isOpen: false };
-
   toggle = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    });
+    this.props.toggleOverlay();
   };
 
   render() {
@@ -32,16 +25,22 @@ class NavigationBar extends Component {
         <Nav className="ml-auto" navbar>
           <NavItem>
             <Link to="/recipes" className="nav-link">
-            Find a Recipe
+              Find a Recipe
             </Link>
           </NavItem>
           <NavItem>
-            <Link to="/signup" className="nav-link btn nav-link__sign-up mint-green text-black">
+            <Link
+              to="/signup"
+              className="nav-link btn nav-link__sign-up mint-green text-black"
+            >
               Sign Up
             </Link>
           </NavItem>
           <NavItem>
-            <Link to="/login" className="nav-link btn nav-link__login blue text-white">
+            <Link
+              to="/login"
+              className="nav-link btn nav-link__login blue text-white"
+            >
               Log In
             </Link>
           </NavItem>
@@ -51,4 +50,7 @@ class NavigationBar extends Component {
   }
 }
 
-export default NavigationBar;
+export default connect(
+  null,
+  { toggleOverlay }
+)(NavigationBar);
