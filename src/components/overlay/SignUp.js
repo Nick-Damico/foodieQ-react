@@ -61,7 +61,7 @@ class SignUp extends Component {
                 </FormGroup>
                 <br />
                 <Button className="signup-button" size="lg" block>Sign Up</Button>
-                <GoogleAuth text={"Sign Up with Google"}/>
+                <GoogleAuth text={"Sign Up with Google"} />
                 <br />
                 Already a member? <Button onClick={this.props.toggleLogInOverlay} className="login-button" size="sm">Login</Button>
               </Form>
