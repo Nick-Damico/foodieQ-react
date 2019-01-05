@@ -50,7 +50,7 @@ class GoogleAuth extends Component {
     }
 
     return (
-      <Button onClick={this.onSignInClick} color="danger">
+      <Button onClick={this.onSignInClick} size="lg" className="google-button" block>
         Login with Google
       </Button>
     );

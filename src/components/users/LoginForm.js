@@ -7,7 +7,7 @@ import { logInUser, setCurrentUser } from "../../actions";
 class LoginForm extends Component {
   state = {email: '', password: ''}
 
-  handleOnSubmit = e => {
+  handleOnClick = e => {
     e.preventDefault();
     const user = {
       email: this.state.email,

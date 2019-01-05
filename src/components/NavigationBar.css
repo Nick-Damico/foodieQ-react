@@ -29,12 +29,6 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-.btn {
-  border-radius: 8px;
-  border-bottom-width: 4px;
-  border-bottom-style: solid;
-}
-
 .nav-link__login {
   border-bottom-color: #006ED5;
 }

@@ -7,6 +7,7 @@
   min-height: 100vh;
   transform: translateY(-100%);
   transition: transform .8s ease-in-out;
+  overflow: hidden;
 }
 
 .open {
@@ -16,7 +17,7 @@
 
 /* Text */
 .overlay-header {
-  font-size: 2rem;
+  font-size: 1.8rem;
 }
 
  /* Buttons */
@@ -42,4 +43,12 @@
 /* Icons */
 .user-icon {
   font-size: 4rem;
+}
+
+/* Food Pics */
+.lemonade-pic {
+  position: absolute;
+  width: 250px;
+  bottom: -15px;
+  z-index: 1;
 }

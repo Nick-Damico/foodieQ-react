@@ -1,12 +1,13 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './Greeting.css';
 import {Row, Col} from 'reactstrap';
 
-const LoggedOutGreeting = () => {
+const Greeting = (props) => {
   return (
-    <React.Fragment>      
+    <React.Fragment>
       <Row className="site-overlay__row-2">
-        <Col xs={{ size: 8, offset: 2}}>
+        <Col xs={{ size: 12 }} sm={{ size: 8, offset: 2 }}>
           <div>
             <h4 className="overlay-header">Welcome to FoodieQ</h4>
             <FontAwesomeIcon
@@ -16,8 +17,9 @@ const LoggedOutGreeting = () => {
           </div>
         </Col>
       </Row>
+      {props.children}
     </React.Fragment>
   )
 };
 
-export default LoggedOutGreeting;
+export default Greeting;

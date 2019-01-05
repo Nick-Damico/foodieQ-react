@@ -1,20 +1,21 @@
-import React, { Component } from "react";
-import { Button } from "reactstrap";
+import React from "react";
 import "./SiteOverlay.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import { toggleOverlay } from "../actions";
-import LoggedOutGreeting from './overlay/LoggedOutGreeting';
+import Login from './overlay/Login';
+import LoginSignup from './overlay/LoginSignup';
+
 import lemonadePic from '../images/rasp-lemonade.png';
 
 const SiteOverlay = ({ isOverlayOpen, toggleOverlay, showLogIn }) => {
   const overlayActive = isOverlayOpen ? "open" : "";
   let component;
   if (showLogIn) {
-    component = <div>Login</div>;
+    component = <Login />;
   } else {
-    component = <LoggedOutGreeting />;
+    component = <LoginSignup />;
   }
   return (
     <div className={`site-overlay blue text-white ${overlayActive}`}>
