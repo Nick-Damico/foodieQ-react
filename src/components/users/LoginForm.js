@@ -1,53 +1,71 @@
 import React, { Component } from "react";
-import './loginForm.css';
-import { Button } from "reactstrap";
+import Greeting from '../overlay/Greeting';
+import GoogleAuth from '../users/GoogleAuth';
+import {
+  Button,
+  Form,
+  FormGroup,
+  Input,
+  Row,
+  Col
+} from "reactstrap";
 import { connect } from "react-redux";
 import { logInUser, setCurrentUser } from "../../actions";
 
 class LoginForm extends Component {
-  state = {email: '', password: ''}
+  state = { email: "", password: "" };
 
   handleOnClick = e => {
     e.preventDefault();
     const user = {
       email: this.state.email,
       password: this.state.password
-    }
+    };
     this.props.logInUser(user);
   };
 
   renderForm() {
     return (
-      <form className="login-form" onSubmit={this.handleOnSubmit}>
-        <input
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Email"
-          autoComplete="true"
-          value={this.state.email}
-          onChange={e => this.setState({email: e.target.value})}
-        />
-        <br />
-        <input
-          id="password"
-          type="password"
-          name="password"
-          placeholder="Password"
-          autoComplete="true"
-          value={this.state.password}
-          onChange={e => this.setState({password: e.target.value})}
-        />
-        <br />
-        <Button color="primary">
-          Login
-        </Button>
-      </form>
-    )
+      <React.Fragment>
+        <Greeting>
+          <Row>
+            <Col xs={{ size: 12 }}>
+              <Form className="login-form" onSubmit={this.handleOnSubmit}>
+                <FormGroup>
+                  <Input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  autoComplete="true"
+                  value={this.state.email}
+                  onChange={e => this.setState({ email: e.target.value })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  autoComplete="true"
+                  value={this.state.password}
+                  onChange={e => this.setState({ password: e.target.value })}
+                  />
+                </FormGroup>
+                <br />
+                <Button color="primary" size="lg" block>Login</Button>
+                <GoogleAuth />
+              </Form>
+            </Col>
+          </Row>
+        </Greeting>
+      </React.Fragment>
+    );
   }
 
   renderGreeting() {
-    return <div>Welcome</div>
+    return <div>Welcome</div>;
   }
 
   render() {
