@@ -39,6 +39,15 @@ FoodieQ's backend technology is built with Rails and you can read more about it 
   5. `npm start`
   6. visit http://localhost:3000/
 
+
+## Todo List
+- [ ] Add Sign Up form to Modal
+- [ ] Add Client Side Validations to Forms
+- [ ] Display Server Side error messages on unsuccessful Sign up or Login
+- [ ] Redirect to Logged In screen on Successful Sign up Login
+- [ ] Finish Landing Page design to inform users of FoodieQ's functionality.
+
+
 ## How to run the test suite
   `npm test`
 
