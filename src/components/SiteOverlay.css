@@ -52,3 +52,11 @@
   bottom: -15px;
   z-index: 1;
 }
+
+.veggie-bowl {
+  position: absolute;
+  left: -47px;
+  width: 196px;
+  bottom: -35px;
+  z-index: 1;
+}
