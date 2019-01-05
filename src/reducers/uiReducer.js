@@ -17,7 +17,7 @@ const uiReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         overlay: {
-          ...state.overlay,
+          ...INITIAL_STATE,
           isOverlayOpen: !state.overlay.isOverlayOpen
         }
       };
@@ -29,7 +29,7 @@ const uiReducer = (state = INITIAL_STATE, action) => {
     case TOGGLE_SIGNUP_OVERLAY:
       return {
         ...state,
-        overlay: { ...state.overlay, isOverlayOpen: true, showSignUp: true }
+        overlay: { ...state.overlay, isOverlayOpen: true, showSignUp: true, showLogIn: false}
       };
     default:
       return state;
