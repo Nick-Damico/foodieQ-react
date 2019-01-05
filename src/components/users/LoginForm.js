@@ -10,7 +10,7 @@ import {
   Col
 } from "reactstrap";
 import { connect } from "react-redux";
-import { logInUser, setCurrentUser } from "../../actions";
+import { logInUser, setCurrentUser, toggleSignUpOverlay } from "../../actions";
 
 class LoginForm extends Component {
   state = { email: "", password: "" };
@@ -53,10 +53,10 @@ class LoginForm extends Component {
                   onChange={e => this.setState({ password: e.target.value })}
                   />
                 </FormGroup>
-                <Button color="primary" size="lg" block>Login</Button>
+                <Button className="login-button" size="lg" block>Login</Button>
                 <GoogleAuth text={"Login with Google"}/>
                 <br />
-                Not a member? <Button className="signup-button" size="sm">Sign Up</Button>
+                Not a member? <Button onClick={this.props.toggleSignUpOverlay} className="signup-button" size="sm">Sign Up</Button>
               </Form>
             </Col>
           </Row>
@@ -86,5 +86,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logInUser, setCurrentUser }
+  { logInUser, setCurrentUser, toggleSignUpOverlay }
 )(LoginForm);

@@ -61,6 +61,11 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Abhaya Libre', serif; }
   border-bottom-color: #EC2238;
 }
 
+.login-button {
+  background-color: #0882ff;
+  border-bottom-color: #006ED5;
+}
+
 .signup-button {
   background-color: #1DE8BF;
   border-bottom-color: #13BE9B;

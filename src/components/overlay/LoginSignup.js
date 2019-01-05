@@ -11,7 +11,7 @@ const LoginSignup = props => {
         <Col xs={{ size: 12 }} sm={{ size: 8, offset: 2 }}>
           <Button
             onClick={props.toggleLogInOverlay}
-            color="primary"
+            className="btn login-button"
             size="lg"
             block
           >
