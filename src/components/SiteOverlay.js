@@ -5,10 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import { toggleOverlay } from "../actions";
+import LoggedOutGreeting from './overlay/LoggedOutGreeting';
+import lemonadePic from '../images/rasp-lemonade.png';
 
-const SiteOverlay = ({ isOverlayOpen, toggleOverlay }) => {
+const SiteOverlay = ({ isOverlayOpen, toggleOverlay, showLogIn }) => {
   const overlayActive = isOverlayOpen ? "open" : "";
-
+  let component;
+  if (showLogIn) {
+    component = <div>Login</div>;
+  } else {
+    component = <LoggedOutGreeting />;
+  }
   return (
     <div className={`site-overlay blue text-white ${overlayActive}`}>
       <Container>
@@ -21,25 +28,17 @@ const SiteOverlay = ({ isOverlayOpen, toggleOverlay }) => {
             />
           </Col>
         </Row>
-        <Row className="site-overlay__row-2">
-          <Col xs={{ size: 8, offset: 2}}>
-            <div>
-              <h4 className="overlay-header">Welcome to FoodieQ</h4>
-              <FontAwesomeIcon
-              icon="user-circle"
-              className="user-icon"
-              />
-            </div>
-          </Col>
-        </Row>
+        { component }
       </Container>
+      <img src={lemonadePic} alt="" className="lemonade-pic" />
     </div>
   );
 };
 
 const mapStateToProps = state => {
   return {
-    isOverlayOpen: state.ui.isOverlayOpen
+    isOverlayOpen: state.ui.overlay.isOverlayOpen,
+    showLogIn: state.ui.overlay.showLogIn
   };
 };
 
