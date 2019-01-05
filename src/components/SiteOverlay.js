@@ -4,16 +4,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import { toggleOverlay } from "../actions";
-import Login from './overlay/Login';
-import LoginSignup from './overlay/LoginSignup';
+import Login from "./overlay/Login";
+import SignUp from "./overlay/SignUp";
+import LoginSignup from "./overlay/LoginSignup";
 
-import lemonadePic from '../images/rasp-lemonade.png';
+import lemonadePic from "../images/rasp-lemonade.png";
 
-const SiteOverlay = ({ isOverlayOpen, toggleOverlay, showLogIn }) => {
+const SiteOverlay = ({
+  isOverlayOpen,
+  toggleOverlay,
+  showLogIn,
+  showSignUp
+}) => {
   const overlayActive = isOverlayOpen ? "open" : "";
   let component;
   if (showLogIn) {
     component = <Login />;
+  } else if (showSignUp) {
+    component = <SignUp />;
   } else {
     component = <LoginSignup />;
   }
@@ -29,7 +37,7 @@ const SiteOverlay = ({ isOverlayOpen, toggleOverlay, showLogIn }) => {
             />
           </Col>
         </Row>
-        { component }
+        {component}
       </Container>
       <img src={lemonadePic} alt="" className="lemonade-pic" />
     </div>
@@ -39,7 +47,8 @@ const SiteOverlay = ({ isOverlayOpen, toggleOverlay, showLogIn }) => {
 const mapStateToProps = state => {
   return {
     isOverlayOpen: state.ui.overlay.isOverlayOpen,
-    showLogIn: state.ui.overlay.showLogIn
+    showLogIn: state.ui.overlay.showLogIn,
+    showSignUp: state.ui.overlay.showSignUp
   };
 };
 

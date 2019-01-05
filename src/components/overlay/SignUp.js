@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Greeting from '../overlay/Greeting';
+import React, {Component} from 'react';
 import GoogleAuth from '../users/GoogleAuth';
+import Greeting from './Greeting';
 import {
   Button,
   Form,
@@ -9,23 +9,16 @@ import {
   Row,
   Col
 } from "reactstrap";
-import { connect } from "react-redux";
-import { logInUser, setCurrentUser } from "../../actions";
 
-class LoginForm extends Component {
-  state = { email: "", password: "" };
+class SignUp extends Component {
+  state = {email: '', password: '', password_confirmation: ''};
 
-  handleOnClick = e => {
+  handleOnSubmit(e) {
     e.preventDefault();
-    const user = {
-      email: this.state.email,
-      password: this.state.password
-    };
-    this.props.logInUser(user);
-  };
+  }
 
-  renderForm() {
-    return (
+  render() {
+    return(
       <React.Fragment>
         <Greeting>
           <Row>
@@ -48,15 +41,25 @@ class LoginForm extends Component {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  autoComplete="true"
+                  autoComplete="new-password"
                   value={this.state.password}
                   onChange={e => this.setState({ password: e.target.value })}
                   />
                 </FormGroup>
-                <Button color="primary" size="lg" block>Login</Button>
-                <GoogleAuth text={"Login with Google"}/>
+                <FormGroup>
+                  <Input
+                  id="password_confirmation"
+                  type="password"
+                  name="password_confirmation"
+                  placeholder="Password Confirmation"
+                  autoComplete="new-password"
+                  value={this.state.password}
+                  onChange={e => this.setState({ password: e.target.value })}
+                  />
+                </FormGroup>
                 <br />
-                Not a member? <Button className="signup-button" size="sm">Sign Up</Button>
+                <Button className="signup-button" size="lg" block>Sign Up</Button>
+                <GoogleAuth text={"Sign Up with Google"}/>                
               </Form>
             </Col>
           </Row>
@@ -65,26 +68,6 @@ class LoginForm extends Component {
     );
   }
 
-  renderGreeting() {
-    return <div>Welcome</div>;
-  }
-
-  render() {
-    if (this.props.isSignedIn) {
-      return this.renderGreeting();
-    } else {
-      return this.renderForm();
-    }
-  }
-}
-
-const mapStateToProps = state => {
-  return {
-    isSignedIn: state.auth.isSignedIn
-  };
 };
 
-export default connect(
-  mapStateToProps,
-  { logInUser, setCurrentUser }
-)(LoginForm);
+export default SignUp;

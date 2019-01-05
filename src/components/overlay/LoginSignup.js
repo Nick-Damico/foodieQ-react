@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Row, Col } from "reactstrap";
 import Greeting from "./Greeting";
 import { connect } from "react-redux";
-import { toggleLogInOverlay } from "../../actions";
+import { toggleLogInOverlay, toggleSignUpOverlay } from "../../actions";
 
 const LoginSignup = props => {
   return (
@@ -17,7 +17,11 @@ const LoginSignup = props => {
           >
             Login
           </Button>
-          <Button className="btn signup-button" size="lg" block>
+          <Button
+            onClick={props.toggleSignUpOverlay}
+            className="btn signup-button"
+            size="lg"
+            block>
             Sign Up
           </Button>
         </Col>
@@ -28,5 +32,5 @@ const LoginSignup = props => {
 
 export default connect(
   null,
-  { toggleLogInOverlay }
+  { toggleLogInOverlay, toggleSignUpOverlay }
 )(LoginSignup);

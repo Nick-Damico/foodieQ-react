@@ -38,7 +38,8 @@ class GoogleAuth extends Component {
   };
 
   render() {
-    if (this.props.isSignedIn) {
+    const {isSignedIn, text} = this.props;
+    if (isSignedIn) {
       return (
         <div>
           <span>
@@ -51,7 +52,7 @@ class GoogleAuth extends Component {
 
     return (
       <Button onClick={this.onSignInClick} size="lg" className="google-button" block>
-        Login with Google
+        {text}
       </Button>
     );
   }
