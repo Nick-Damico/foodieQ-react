@@ -2,9 +2,9 @@ import "./App.css";
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 // Components
-import MainHeader from  "./MainHeader";
 import SignupForm from  "./users/SignupForm";
 import NavigationBar from "./NavigationBar";
+import LandingPage from "./pages/LandingPage";
 import SiteOverlay from './SiteOverlay';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -18,7 +18,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavigationBar />
-            <MainHeader />
+            <Route exact to="/" component={LandingPage} />
             <SiteOverlay />
           </div>
         </BrowserRouter>
