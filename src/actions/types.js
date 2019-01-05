@@ -7,3 +7,4 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 // ui Action Types
 export const TOGGLE_OVERLAY = "TOGGLE_OVERLAY";
+export const TOGGLE_LOGIN_OVERLAY = "TOGGLE_LOGIN_OVERLAY";
