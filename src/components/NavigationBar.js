@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import logo from "../images/foodieq-logo.svg";
 import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
 import "./NavigationBar.css";
-import { toggleOverlay } from "../actions";
+import { toggleOverlay, toggleLogInOverlay } from "../actions";
 
 class NavigationBar extends Component {
   toggle = () => {
     this.props.toggleOverlay();
+  };
+
+  toggleLogIn = () => {
+    this.props.toggleLogInOverlay();
   };
 
   render() {
@@ -32,6 +36,7 @@ class NavigationBar extends Component {
             <Link
               to="/signup"
               className="nav-link btn nav-link__sign-up mint-green text-black"
+              onClick={this.toggle}
             >
               Sign Up
             </Link>
@@ -40,6 +45,7 @@ class NavigationBar extends Component {
             <Link
               to="/login"
               className="nav-link btn nav-link__login blue text-white"
+              onClick={this.toggleLogIn}
             >
               Log In
             </Link>
@@ -52,5 +58,5 @@ class NavigationBar extends Component {
 
 export default connect(
   null,
-  { toggleOverlay }
+  { toggleOverlay, toggleLogInOverlay }
 )(NavigationBar);
