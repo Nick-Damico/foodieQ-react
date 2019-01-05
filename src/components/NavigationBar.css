@@ -20,6 +20,13 @@
 .nav-link {
   margin-right: 4px;
   transition: all .4s ease;
+  /* hide on mobile viewports */
+  position: absolute;
+  height: 1px;
+  width: 1px;
+  overflow:hidden;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
 }
 
 .btn {
@@ -44,4 +51,14 @@
 .nav-link__sign-up:hover {
   background-color: #13BE9B;
   border-bottom-color: #1DE8BF;
+}
+
+@media (min-width: 500px) {
+  .nav-link {
+    position: initial;
+    height: initial;
+    width: initial;
+    overflow: inherit;
+    clip: auto;
+  }
 }
