@@ -8,7 +8,7 @@ import Login from "./overlay/Login";
 import SignUp from "./overlay/SignUp";
 import LoginSignup from "./overlay/LoginSignup";
 
-import lemonadePic from "../images/overlay/rasp-lemonade.png";
+import lemonadePic from "../images/overlay/rasp-lemonade-shadow.png";
 import veggieBowlPic from "../images/overlay/veggie-bowl.png";
 
 const SiteOverlay = ({
