@@ -1,61 +1,68 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { signInUser } from '../../actions';
+import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
 
-export default class SignupForm extends Component {
+class SignUp extends Component {
+  state = { email: "", password: "", password_confirmation: "" };
 
-  handleClick = (e) => {
+  handleOnSubmit(e) {
     e.preventDefault();
-    const email = document.querySelector('#email').value;
-    const password = document.querySelector('#password').value;
-    const passwordConfirm = document.querySelector('#password-confirmation').value;
-
-    axios({
-      method: 'post',
-      url: '/signup',
-      data: {
-        user: {
-          email: email,
-          password: password,
-          password_confirmation: passwordConfirm
-        }
-      }
-    })
-    .then((response) => {
-     console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
   }
 
   render() {
     return (
-      <form className="signup-form">
-      <input
-        id="email"
-        type="email"
-        name="email"
-        placeholder="Email"
-        autoComplete="true"
-      />
-      <br />
-      <input
-        id="password"
-        type="password"
-        name="password"
-        placeholder="Password"
-        autoComplete="true"
-      />
-      <input
-        id="password-confirmation"
-        type="password"
-        name="password-confirmation"
-        placeholder="Password Confirmation"
-        autoComplete="true"
-      />
-      <br />
-      <button onClick={this.handleClick}>Sign Up</button>
-      </form>
-    )
-  }
-}
+      <React.Fragment>
+          <Row>
+            <Col xs={{ size: 12 }}>
+              <Form className="login-form" onSubmit={this.handleOnSubmit}>
+                <FormGroup>
+                  <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    autoComplete="true"
+                    value={this.state.email}
+                    onChange={e => this.setState({ email: e.target.value })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    autoComplete="new-password"
+                    value={this.state.password}
+                    onChange={e => this.setState({ password: e.target.value })}
+                  />
+                </FormGroup>
+                <FormGroup>
+                  <Input
+                    id="password_confirmation"
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password Confirmation"
+                    autoComplete="new-password"
+                    value={this.state.password}
+                    onChange={e => this.setState({ password: e.target.value })}
+                  />
+                </FormGroup>
+                <br />
+                <Button className="signup-button" size="lg" block>
+                  Sign Up
+                </Button>
+              </Form>
+            </Col>
+          </Row>
+          { this.props.children }
+      </React.Fragment>
+    );
+  };
+};
+
+export default connect(
+  null,
+  { signInUser }
+)(SignUp);
