@@ -46,6 +46,24 @@ export const signInUser = user => {
   };
 };
 
+export const signUpUser = user => {
+  return async dispatch => {
+    const response = await axios.post("http://localhost:3001/api/v1/sign_in", {
+      user: {
+        email: user.email,
+        password: user.password,
+        password_confirmation: user.passwordConfirm
+      }
+    })
+    .then((response) => {
+     console.log(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+};
+
 export const setCurrentUser = () => {
   return { type: SET_CURRENT_USER };
 };
