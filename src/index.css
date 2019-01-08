@@ -1,7 +1,36 @@
+:root {
+  /* SITE color pallet */
+  --foodieq-blue:        #0882ff;
+  --foodieq-drk-blue:    #006ED5;
+  --foodieq-lgt-blue:    #3D9DFF;
+
+  --foodieq-red:         #EF4759;
+  --foodieq-drk-red:     #EC2238;
+  --foddieq-lgt-red:     #F37280;
+
+  --foodieq-orange:      #EF9B47;
+  --foodieq-drk-orange:  #E17A14;
+  --foodieq-lgt-orange:  #F3B272;
+
+  --foodieq-mint:        #1AD5AD;
+  --foodieq-drk-mint:    #13BE9B;
+  --foodieq-lgt-mint:    #41ECC9;
+
+  --foodieq-grey:        #A9A9A9;
+  --foodieq-drk-grey:    #8F8F8F;
+  --foodieq-lgt-grey:    #C2C2C2;
+
+  --foodieq-black:       #393939;
+  --foodieq-drk-black:   #1A1A1A;
+  --foodieq-lgt-black:   #545454;
+}
+/* Removes 2px of horizontal scroll currently showing up with hiding 'login',
+'sign up' button on navigation bar, mobile only */
 #root {
   overflow-x: hidden;
 }
 
+/* BASE STYLES */
 body {
   margin: 0;
   padding: 0;
@@ -15,35 +44,8 @@ code {
     monospace;
 }
 
+/* FONT */
 h1,h2,h3,h4,h5,h6 { font-family: 'Abhaya Libre', serif; }
-
-/* SITE color pallet */
-.blue {
-  background-color: #0882ff;
-}
-.blue-darker {
-  background-color: #006ED5;
-}
-
-.orange {
-  background-color: #EF9B47;
-}
-
-.orange-red {
-  background-color: #EF4759;
-}
-
-.mint-green {
-  background-color: #1DE8BF;
-}
-
-.foodieq-gray {
-  background-color: #A9A9A9;
-}
-
-.foodieq-black {
-  background-color: #393939;
-}
 
 .text-white {
   color: #fafafa;
