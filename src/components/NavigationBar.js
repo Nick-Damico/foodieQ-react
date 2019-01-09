@@ -35,7 +35,7 @@ class NavigationBar extends Component {
           <NavItem>
             <Link
               to="/signup"
-              className="nav-link btn nav-link__sign-up mint-green text-black"
+              className="btn nav-link signup-button text-black"
               onClick={this.toggle}
             >
               Sign Up
@@ -44,7 +44,7 @@ class NavigationBar extends Component {
           <NavItem>
             <Link
               to="/login"
-              className="nav-link btn nav-link__login blue text-white"
+              className="btn nav-link login-button text-white"
               onClick={this.toggleLogIn}
             >
               Log In

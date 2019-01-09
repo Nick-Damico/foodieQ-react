@@ -29,24 +29,6 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-.nav-link__login {
-  border-bottom-color: #006ED5;
-}
-
-.nav-link__login:hover {
-  background-color: #006ED5;
-  border-bottom-color: #0882FF;
-}
-
-.nav-link__sign-up {
-  border-bottom-color: #13BE9B;
-}
-
-.nav-link__sign-up:hover {
-  background-color: #13BE9B;
-  border-bottom-color: #1DE8BF;
-}
-
 @media (min-width: 500px) {
   .nav-link {
     position: initial;
