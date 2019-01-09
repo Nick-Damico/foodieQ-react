@@ -45,13 +45,6 @@
 }
 
 /* Food Pics */
-.lemonade-pic {
-  position: absolute;
-  width: 250px;
-  bottom: -15px;
-  z-index: 1;
-}
-
 .veggie-bowl {
   position: absolute;
   left: -47px;

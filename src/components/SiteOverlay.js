@@ -8,7 +8,6 @@ import Login from "./overlay/Login";
 import SignUp from "./overlay/SignUp";
 import LoginSignup from "./overlay/LoginSignup";
 
-import lemonadePic from "../images/overlay/rasp-lemonade-shadow.png";
 import veggieBowlPic from "../images/overlay/veggie-bowl.png";
 
 const SiteOverlay = ({
@@ -40,7 +39,6 @@ const SiteOverlay = ({
         </Row>
         {component}
       </Container>
-      <img src={lemonadePic} alt="" className="lemonade-pic" />
       <img src={veggieBowlPic} alt="" className="veggie-bowl" />
     </div>
   );
