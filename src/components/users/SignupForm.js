@@ -1,18 +1,26 @@
+import './SignupForm.css';
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signInUser } from '../../actions';
+import { signInUser } from "../../actions";
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
+import { TweenMax, Power1} from "gsap/TweenMax";
 
 class SignUp extends Component {
+  formContainer = null;
   state = { email: "", password: "", password_confirmation: "" };
 
   handleOnSubmit(e) {
     e.preventDefault();
   }
 
+  componentDidMount() {
+    TweenMax.to(this.formContainer, 1.4, { opacity: 1, ease: Power1.easeInOut} );
+  }
+
   render() {
     return (
       <React.Fragment>
+        <div ref={div => (this.formContainer = div)} className="signup-form__container">
           <Row>
             <Col xs={{ size: 12 }}>
               <Form className="login-form" onSubmit={this.handleOnSubmit}>
@@ -56,11 +64,12 @@ class SignUp extends Component {
               </Form>
             </Col>
           </Row>
-          { this.props.children }
+          {this.props.children}
+        </div>
       </React.Fragment>
     );
-  };
-};
+  }
+}
 
 export default connect(
   null,
