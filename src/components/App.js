@@ -2,12 +2,11 @@ import "./App.css";
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 // Components
-import SignupForm from  "./users/SignupForm";
 import NavigationBar from "./NavigationBar";
 import LandingPage from "./pages/LandingPage";
 import SiteOverlay from './SiteOverlay';
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { connect } from 'react-redux';
 import { faTimes, faUserCircle } from '@fortawesome/free-solid-svg-icons'
 library.add(faTimes, faUserCircle);
 
@@ -19,7 +18,7 @@ class App extends Component {
           <div>
             <NavigationBar />
             <Route exact to="/" component={LandingPage} />
-            <SiteOverlay />
+            {this.props.isOverlayOpen ? <SiteOverlay /> : null}
           </div>
         </BrowserRouter>
       </div>
@@ -27,4 +26,7 @@ class App extends Component {
   };
 };
 
-export default App;
+const mapStateToProps = (state) => {
+  return { isOverlayOpen: state.ui.overlay.isOverlayOpen }
+}
+export default connect(mapStateToProps,{})(App);
