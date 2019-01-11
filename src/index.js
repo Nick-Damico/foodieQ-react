@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.css";
+import {TweenMax, Power2, TimelineLite} from "gsap/TweenMax";
 import "./index.css";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, compose } from "redux";
