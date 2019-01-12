@@ -13,7 +13,7 @@ import {
 const NavigationBar = props => {
   return (
     <Navbar color="light" light expand>
-      <div className="hamburger-nav" onClick={() => this.props.toggleOverlay()}>
+      <div className="hamburger-nav" onClick={() => props.toggleOverlay()}>
         <div className="hamburger-nav__bar1" />
         <div className="hamburger-nav__bar2" />
         <div className="hamburger-nav__bar3" />
@@ -31,7 +31,7 @@ const NavigationBar = props => {
           <Link
             to="/signup"
             className="btn nav-link signup-button text-black"
-            onClick={() => this.props.toggleSignUpOverlay()}
+            onClick={() => props.toggleSignUpOverlay()}
           >
             Sign Up
           </Link>
@@ -40,7 +40,7 @@ const NavigationBar = props => {
           <Link
             to="/login"
             className="btn nav-link login-button text-white"
-            onClick={() => this.props.toggleLogInOverlay()}
+            onClick={() => props.toggleLogInOverlay()}
           >
             Log In
           </Link>
