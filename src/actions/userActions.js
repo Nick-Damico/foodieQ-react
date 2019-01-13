@@ -12,8 +12,7 @@ export const logInUser = user => {
         dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data });
       });
     if (response) {
-      if (response.payload.status > 200) {
-      } else if (response.status === 200) {
+      if (response.status === 200) {
         localStorage.setItem("token", response.data.token);
         dispatch({ type: APP_SIGN_IN });
         dispatch({ type: SET_CURRENT_USER, payload: response });
@@ -48,20 +47,21 @@ export const signInUser = user => {
 
 export const signUpUser = user => {
   return async dispatch => {
-    const response = await axios.post("http://localhost:3001/api/v1/sign_in", {
-      user: {
-        email: user.email,
-        password: user.password,
-        password_confirmation: user.passwordConfirm
-      }
-    })
-    .then((response) => {
-     console.log(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+    const response = await axios
+      .post("http://localhost:3001/api/v1/sign_in", {
+        user: {
+          email: user.email,
+          password: user.password,
+          password_confirmation: user.passwordConfirm
+        }
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
 };
 
 export const setCurrentUser = () => {

@@ -17,14 +17,15 @@ export const signOut = () => {
 };
 
 export const logInGoogleUser = user => {
-  const googleUser = buildGoogleUser(user)["data"]["user"];
+  const googleUser = buildGoogleUser(user);
   return async dispatch => {
     const response = await axios.post("http://localhost:3001/api/v1/auth/google", {
-      user: { email: googleUser.email }
+      user: { email: googleUser["data"]["user"]["email"] }
     });
     if (response.status === 200) {
       localStorage.setItem("token", response.data.token);
-      dispatch({ type: SET_CURRENT_USER, payload: response });
+      debugger;
+      dispatch({ type: SET_CURRENT_USER, payload: googleUser });
     }
   };
 };

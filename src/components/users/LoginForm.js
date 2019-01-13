@@ -11,7 +11,7 @@ class LoginForm extends Component {
   formContainer = null;
   state = { email: "", password: "" };
 
-  handleOnClick = e => {
+  handleOnSubmit = e => {
     e.preventDefault();
     const user = {
       email: this.state.email,
