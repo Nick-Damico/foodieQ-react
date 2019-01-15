@@ -14,6 +14,7 @@
 
   --foodieq-mint:        #1AD5AD;
   --foodieq-drk-mint:    #13BE9B;
+  --foodieq-drker-mint:  #0f8A71;
   --foodieq-lgt-mint:    #41ECC9;
 
   --foodieq-grey:        #A9A9A9;
@@ -82,15 +83,15 @@ h1,h2,h3,h4,h5,h6 { font-family: 'Abhaya Libre', serif; }
 
 .login-button:hover {
   background-color: var(--foodieq-blue);
-  border-bottom-color: var(--foodieq-lgt-blue);
+  border-bottom-color: var(--foodieq-drk-blue);
 }
 
 .signup-button {
   background-color: var(--foodieq-mint);
-  border-bottom-color: var(--foodieq-drk-mint);
+  border-bottom-color: var(--foodieq-drker-mint);
 }
 
 .signup-button:hover {
   background-color: var(--foodieq-drk-mint);
-  border-bottom-color: var(--foodieq-mint);
+  border-bottom-color: var(--foodieq-drker-mint);
 }
