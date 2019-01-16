@@ -1,46 +1,19 @@
 import axios from "axios";
 import { APP_SIGN_IN, APP_SIGN_IN_ERROR, SET_CURRENT_USER } from "./types";
+// dispatch actions stored in actionHelpers to remove repeated code.
+import { processResponse } from "./actionHelpers";
 
 // Login To Api App, success should dispatch(SIGN_IN)
 export const logInUser = user => {
   return async dispatch => {
     const response = await axios
-      .post("http://localhost:3001/api/v1/auth", {
-        user: { email: user.email, password: user.password }
-      })
+      .post("http://localhost:3001/api/v1/auth", { user: user })
       .catch(error => {
         dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data });
       });
     if (response) {
-      if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        dispatch({ type: APP_SIGN_IN });
-        dispatch({ type: SET_CURRENT_USER, payload: response });
-      }
-    }
-  };
-};
-
-export const signInUser = user => {
-  return async dispatch => {
-    const response = await axios
-      .post("http://localhost:3001/api/v1/signup", {
-        user: {
-          email: user.email,
-          password: user.password,
-          password_confirmation: user.password_confirmation
-        }
-      })
-      .catch(error => {
-        dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data });
-      });
-    if (response) {
-      if (response.payload.status > 200) {
-      } else if (response.status === 200) {
-        localStorage.setItem("token", response.data.token);
-        dispatch({ type: APP_SIGN_IN });
-        dispatch({ type: SET_CURRENT_USER, payload: response });
-      }
+      debugger;
+      processResponse(dispatch, response);
     }
   };
 };
@@ -48,19 +21,13 @@ export const signInUser = user => {
 export const signUpUser = user => {
   return async dispatch => {
     const response = await axios
-      .post("http://localhost:3001/api/v1/sign_in", {
-        user: {
-          email: user.email,
-          password: user.password,
-          password_confirmation: user.passwordConfirm
-        }
-      })
-      .then(response => {
-        console.log(response);
-      })
+      .post("http://localhost:3001/api/v1/signup", { user: user })
       .catch(error => {
-        console.log(error);
+        dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data });
       });
+    if (response) {
+      processResponse(dispatch, response);
+    }
   };
 };
 
