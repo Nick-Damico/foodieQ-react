@@ -1,26 +1,39 @@
-import './SignupForm.css';
+import "./SignupForm.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { signInUser } from "../../actions";
+import { signUpUser } from "../../actions";
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
-import { TweenMax, Power1} from "gsap/TweenMax";
+import { TweenMax, Power1 } from "gsap/TweenMax";
 
 class SignUp extends Component {
   formContainer = null;
   state = { email: "", password: "", password_confirmation: "" };
 
-  handleOnSubmit(e) {
+  handleOnSubmit = (e) => {
     e.preventDefault();
+    let user = {
+      email: this.state.email,
+      password: this.state.password,
+      password_confirmation: this.state.password_confirmation
+    }
+
+    this.props.signUpUser(user);
   }
 
   componentDidMount() {
-    TweenMax.to(this.formContainer, 1.4, { opacity: 1, ease: Power1.easeInOut} );
+    TweenMax.to(this.formContainer, 1.4, {
+      opacity: 1,
+      ease: Power1.easeInOut
+    });
   }
 
   render() {
     return (
       <React.Fragment>
-        <div ref={div => (this.formContainer = div)} className="signup-form__container">
+        <div
+          ref={div => (this.formContainer = div)}
+          className="signup-form__container"
+        >
           <Row>
             <Col xs={{ size: 12 }}>
               <Form className="login-form" onSubmit={this.handleOnSubmit}>
@@ -53,8 +66,10 @@ class SignUp extends Component {
                     name="password_confirmation"
                     placeholder="Password Confirmation"
                     autoComplete="new-password"
-                    value={this.state.password}
-                    onChange={e => this.setState({ password: e.target.value })}
+                    value={this.state.password_confirmation}
+                    onChange={e =>
+                      this.setState({ password_confirmation: e.target.value })
+                    }
                   />
                 </FormGroup>
                 <br />
@@ -73,5 +88,5 @@ class SignUp extends Component {
 
 export default connect(
   null,
-  { signInUser }
+  { signUpUser }
 )(SignUp);
