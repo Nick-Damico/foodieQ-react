@@ -18,10 +18,18 @@ export const successfulResponse = (dispatch, response) => {
   localStorage.setItem("token", response.data.token);
   dispatch({ type: APP_SIGN_IN });
   dispatch({ type: SET_CURRENT_USER, payload: response });
-}
+};
+
+export const errorResponse = (dispatch, response) => {
+  dispatch({ type: APP_SIGN_IN_ERROR, payload: response });
+};
 
 export const processResponse = (dispatch, response) => {
-  if (response.status >= 200 && response.status < 300) {
+  let status = response.status;
+
+  if (status >= 200 && status < 300) {
     successfulResponse(dispatch, response);
+  } else if (status >= 400 && status < 500) {
+    errorResponse(dispatch, response);
   }
-}
+};

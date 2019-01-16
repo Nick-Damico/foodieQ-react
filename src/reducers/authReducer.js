@@ -13,8 +13,7 @@ export default (state = INITIAL_STATE, action) => {
     case APP_SIGN_IN_ERROR:
       return {
         ...state,
-        isSignedIn: false,
-        errors: [...state.errors, ...action.payload.errors]
+        errors: [...state.errors, ...action.payload.data.errors]
       };
     default:
       return state;

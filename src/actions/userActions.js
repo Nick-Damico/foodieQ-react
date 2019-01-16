@@ -8,13 +8,12 @@ export const logInUser = user => {
   return async dispatch => {
     const response = await axios
       .post("http://localhost:3001/api/v1/auth", { user: user })
+      .then(response => {
+        processResponse(dispatch, response);
+      })
       .catch(error => {
-        dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data });
+        processResponse(dispatch, error.response);
       });
-    if (response) {
-      debugger;
-      processResponse(dispatch, response);
-    }
   };
 };
 
@@ -22,12 +21,12 @@ export const signUpUser = user => {
   return async dispatch => {
     const response = await axios
       .post("http://localhost:3001/api/v1/signup", { user: user })
+      .then(response => {
+        processResponse(dispatch, response);
+      })
       .catch(error => {
-        dispatch({ type: APP_SIGN_IN_ERROR, payload: error.response.data });
+        processResponse(dispatch, error.response);
       });
-    if (response) {
-      processResponse(dispatch, response);
-    }
   };
 };
 
