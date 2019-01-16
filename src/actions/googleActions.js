@@ -6,13 +6,13 @@ import {
   SET_CURRENT_USER
 } from "./types";
 
-export const signIn = user => {
+export const googleSignIn = user => {
   return dispatch => {
     dispatch({ type: APP_SIGN_IN });
   };
 };
 
-export const signOut = () => {
+export const googleSignOut = () => {
   return { type: APP_SIGN_OUT };
 };
 
