@@ -29,7 +29,9 @@ class LoginForm extends Component {
 
   displayErrors() {
     const { formErrors } = this.props;
-    const errorItems = formErrors.map((error, i) => (
+    let uniq_errors = [...new Set(formErrors)];
+
+    const errorItems = uniq_errors.map((error, i) => (
       <li key={`error-${i}`} className="error-message__item">
         {error}
       </li>
