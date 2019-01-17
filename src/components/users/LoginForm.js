@@ -21,7 +21,25 @@ class LoginForm extends Component {
   };
 
   componentDidMount() {
-      TweenMax.to(this.formContainer, 1.4, { opacity: 1, ease: Power1.easeInOut} );
+    TweenMax.to(this.formContainer, 1.4, {
+      opacity: 1,
+      ease: Power1.easeInOut
+    });
+  }
+
+  displayErrors() {
+    const { formErrors } = this.props;
+    const errorItems = formErrors.map((error, i) => (
+      <li key={`error-${i}`} className="error-message__item">
+        {error}
+      </li>
+    ));
+
+    return (
+      <Col xs={{ size: 12 }}>
+        <ul className="error-message">{errorItems}</ul>
+      </Col>
+    );
   }
 
   renderForm() {
@@ -29,6 +47,7 @@ class LoginForm extends Component {
       <React.Fragment>
         <Greeting>
           <Row>
+            {this.props.formErrors.length > 0 ? this.displayErrors() : null}
             <Col xs={{ size: 12 }}>
               <div
                 ref={div => (this.formContainer = div)}
@@ -96,7 +115,8 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    isSignedIn: state.auth.isSignedIn
+    isSignedIn: state.auth.isSignedIn,
+    formErrors: state.auth.errors
   };
 };
 
