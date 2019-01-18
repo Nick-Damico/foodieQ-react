@@ -1,12 +1,3 @@
-/* .login-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(20,200,100,1);
-  padding: 20;
-} */
-
 .login-form__container {
   opacity: 0;
 }

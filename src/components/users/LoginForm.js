@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Greeting from "../overlay/Greeting";
-import GoogleAuth from "../users/GoogleAuth";
+import GoogleAuth from "./GoogleAuth";
+import FormErrors from "./FormErrors";
 import "./loginForm.css";
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
 import { TweenMax, Power1 } from "gsap/TweenMax";
@@ -27,29 +28,15 @@ class LoginForm extends Component {
     });
   }
 
-  displayErrors() {
+  render() {
     const { formErrors } = this.props;
-    let uniq_errors = [...new Set(formErrors)];
-
-    const errorItems = uniq_errors.map((error, i) => (
-      <li key={`error-${i}`} className="error-message__item">
-        {error}
-      </li>
-    ));
-
-    return (
-      <Col xs={{ size: 12 }}>
-        <ul className="error-message">{errorItems}</ul>
-      </Col>
-    );
-  }
-
-  renderForm() {
     return (
       <React.Fragment>
         <Greeting>
           <Row>
-            {this.props.formErrors.length > 0 ? this.displayErrors() : null}
+            {this.props.formErrors.length > 0 ? (
+              <FormErrors errors={formErrors} />
+            ) : null}
             <Col xs={{ size: 12 }}>
               <div
                 ref={div => (this.formContainer = div)}
@@ -101,23 +88,10 @@ class LoginForm extends Component {
       </React.Fragment>
     );
   }
-
-  renderGreeting() {
-    return <div>Welcome</div>;
-  }
-
-  render() {
-    if (this.props.isSignedIn) {
-      return this.renderGreeting();
-    } else {
-      return this.renderForm();
-    }
-  }
 }
 
 const mapStateToProps = state => {
   return {
-    isSignedIn: state.auth.isSignedIn,
     formErrors: state.auth.errors
   };
 };

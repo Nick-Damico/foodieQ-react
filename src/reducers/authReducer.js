@@ -13,8 +13,10 @@ export default (state = INITIAL_STATE, action) => {
     case APP_SIGN_IN_ERROR:
       return {
         ...state,
-        errors: [...state.errors, ...action.payload.data.errors]
+        errors: [...action.payload.data.errors]
       };
+    case /Toggle/.test(action.type):
+      console.log('click');
     default:
       return state;
   }

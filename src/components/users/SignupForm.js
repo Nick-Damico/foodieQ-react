@@ -2,6 +2,7 @@ import "./SignupForm.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signUpUser } from "../../actions";
+import FormErrors from './FormErrors';
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
 import { TweenMax, Power1 } from "gsap/TweenMax";
 
@@ -28,6 +29,7 @@ class SignUp extends Component {
   }
 
   render() {
+    const { formErrors } = this.props;
     return (
       <React.Fragment>
         <div
@@ -35,6 +37,7 @@ class SignUp extends Component {
           className="signup-form__container"
         >
           <Row>
+            { formErrors.length > 0 ? <FormErrors errors={formErrors} /> : null}
             <Col xs={{ size: 12 }}>
               <Form className="login-form" onSubmit={this.handleOnSubmit}>
                 <FormGroup>
@@ -86,7 +89,13 @@ class SignUp extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    formErrors: state.auth.errors
+  }
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { signUpUser }
 )(SignUp);

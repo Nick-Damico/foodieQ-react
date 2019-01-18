@@ -8,7 +8,7 @@ export const logInUser = user => {
   return async dispatch => {
     await axios
       .post("http://localhost:3001/api/v1/auth", { user: user })
-      .then(response => {      
+      .then(response => {
         processResponse(dispatch, response);
       })
       .catch(error => {
@@ -25,6 +25,13 @@ export const signUpUser = user => {
         processResponse(dispatch, response);
       })
       .catch(error => {
+
+        let errors = []
+        for (let key in error.response.data) {
+          error.response.data[key][0] = `${key} ${error.response.data[key]}`
+          errors = [...errors, ...error.response.data[key]];
+        }
+        error.response.data.errors = errors;
         processResponse(dispatch, error.response);
       });
   };
