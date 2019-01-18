@@ -3,7 +3,8 @@ import { buildGoogleUser } from "./actionHelpers";
 import {
   APP_SIGN_IN,
   APP_SIGN_OUT,
-  SET_CURRENT_USER
+  SET_CURRENT_USER,
+  TOGGLE_OVERLAY
 } from "./types";
 
 export const googleSignIn = user => {
@@ -24,8 +25,8 @@ export const logInGoogleUser = user => {
     });
     if (response.status === 200) {
       localStorage.setItem("token", response.data.token);
-      debugger;
       dispatch({ type: SET_CURRENT_USER, payload: googleUser });
+      dispatch({ type: TOGGLE_OVERLAY });
     }
   };
 };
