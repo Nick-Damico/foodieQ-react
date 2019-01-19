@@ -1,13 +1,15 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import logo from "../images/foodieq-logo.svg";
 import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+import SignOutButton from './users/SignOutButton';
+import { connect } from "react-redux";
+import logo from "../images/foodieq-logo.svg";
 import "./NavigationBar.css";
 import {
   toggleOverlay,
   toggleLogInOverlay,
-  toggleSignUpOverlay
+  toggleSignUpOverlay,
+  googleSignOut
 } from "../actions";
 
 class NavigationBar extends Component {
@@ -26,7 +28,7 @@ class NavigationBar extends Component {
         <NavItem>
           <Link
             to="/signup"
-            className="btn nav-link signup-button text-black"
+            className="btn nav-link signup-button text-white"
             onClick={() => this.props.toggleSignUpOverlay()}
           >
             Sign Up
@@ -71,6 +73,9 @@ class NavigationBar extends Component {
             Cooking Blogs
           </Link>
         </NavItem>
+        <NavItem>
+          <SignOutButton />
+        </NavItem>
       </Nav>
     );
   };
@@ -101,5 +106,5 @@ const mapStateToProps = state => {
 }
 export default connect(
   mapStateToProps,
-  { toggleOverlay, toggleLogInOverlay, toggleSignUpOverlay }
+  { toggleOverlay, toggleLogInOverlay, toggleSignUpOverlay, googleSignOut }
 )(NavigationBar);

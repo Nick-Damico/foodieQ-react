@@ -17,7 +17,7 @@ class App extends Component {
         <BrowserRouter>
           <div>
             <NavigationBar />
-            <Route exact to="/" component={LandingPage} />
+            <Route exact to="/" component={LandingPage} />            
             {this.props.isOverlayOpen ? <SiteOverlay /> : null}
           </div>
         </BrowserRouter>

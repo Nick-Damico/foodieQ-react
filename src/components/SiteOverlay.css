@@ -23,6 +23,7 @@
 }
 
 .site-overlay__close-btn {
+  color: white;
   cursor: pointer;
   transition: transform .4s ease;
 }

@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Greeting from "../overlay/Greeting";
 import GoogleAuth from "./GoogleAuth";
 import FormErrors from "./FormErrors";
-import "./loginForm.css";
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
+import "./loginForm.css";
+import { Link } from 'react-router-dom';
 import { TweenMax, Power1 } from "gsap/TweenMax";
 import { connect } from "react-redux";
 import { logInUser, setCurrentUser, toggleSignUpOverlay } from "../../actions";
@@ -73,13 +74,15 @@ class LoginForm extends Component {
                   <GoogleAuth text={"Login with Google"} />
                   <br />
                   Not a member?{" "}
-                  <Button
+                  <Link to="/signup">
+                    <Button
                     onClick={this.props.toggleSignUpOverlay}
                     className="signup-button"
                     size="sm"
-                  >
+                    >
                     Sign Up
-                  </Button>
+                    </Button>
+                  </Link>
                 </Form>
               </div>
             </Col>

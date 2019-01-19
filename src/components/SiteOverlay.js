@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./SiteOverlay.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "reactstrap";
+import { Link } from 'react-router-dom';
 import { TweenMax } from "gsap/TweenMax";
 import { connect } from "react-redux";
 import { toggleOverlay } from "../actions";
@@ -29,16 +30,6 @@ class SiteOverlay extends Component {
     }
   }
 
-  //Lifecycle Methods
-  componentDidMount() {
-    // TweenLite.to(this.myElement, 1, {x: 100, y: 100});
-    TweenMax.to(this.siteOverlayDiv, 1, { opacity: 1, y: 0 });
-  }
-
-  componentwillunmount() {
-    console.log("unmount");
-  }
-
   close() {
     let component = this;
     let myAnimation = TweenMax.to(this.siteOverlayDiv, 1, {
@@ -48,6 +39,11 @@ class SiteOverlay extends Component {
     myAnimation.eventCallback("onComplete", function() {
       component.props.toggleOverlay();
     });
+  }
+
+  //Lifecycle Methods
+  componentDidMount() {
+    TweenMax.to(this.siteOverlayDiv, 1, { opacity: 1, y: 0 });
   }
 
   render() {
@@ -61,11 +57,13 @@ class SiteOverlay extends Component {
         <Container>
           <Row className="site-overlay__row-1">
             <Col className="close-container" xs={{ size: 6, offset: 6 }}>
-              <FontAwesomeIcon
+              <Link to="/">
+                <FontAwesomeIcon
                 icon="times"
                 onClick={this.close}
                 className="site-overlay__close-btn"
-              />
+                />
+              </Link>
             </Col>
           </Row>
           {component}

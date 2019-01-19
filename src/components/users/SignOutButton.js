@@ -9,16 +9,17 @@ class SignOutButton extends Component {
   }
 
   signOut = () => {
-    debugger;
-    this.auth.signOut();
+    if(this.auth.isSignedIn.get()){
+      this.auth.signOut();
+    }
     this.props.googleSignOut();
   };
 
   render() {
     return (
-        <button onClick={this.signOut}>
+        <Button onClick={this.signOut}>
           Sign Out
-        </button>
+        </Button>
     );
   };
 };

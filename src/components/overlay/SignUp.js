@@ -5,6 +5,7 @@ import Greeting from "./Greeting";
 import { connect } from "react-redux";
 import { toggleLogInOverlay } from "../../actions";
 import { Button, Row, Col } from "reactstrap";
+import { Link } from 'react-router-dom';
 import './SignUp.css';
 
 const SignUp = (props) => {
@@ -17,13 +18,15 @@ const SignUp = (props) => {
               <GoogleAuth text={"Sign Up with Google"} />
               <br />
               Already a member?{" "}
-              <Button
+              <Link to="/login">
+                <Button
                 onClick={props.toggleLogInOverlay}
                 className="login-button"
                 size="sm"
-              >
+                >
                 Login
-              </Button>
+                </Button>
+              </Link>
             </Col>
           </Row>
         </SignupForm>
