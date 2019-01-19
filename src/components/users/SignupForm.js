@@ -82,7 +82,9 @@ class SignUp extends Component {
               </Form>
             </Col>
           </Row>
-          {this.props.children}
+          {
+            this.props.children // Children passed by overlay/SignUp.js
+          }
         </div>
       </React.Fragment>
     );

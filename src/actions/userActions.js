@@ -24,7 +24,7 @@ export const signUpUser = user => {
       .post("/signup", { user: user })
       .then(response => {
         processResponse(dispatch, response);
-        dispatch({action: TOGGLE_OVERLAY})
+        dispatch({action: TOGGLE_OVERLAY});
       })
       .catch(error => {
         // Below the error messages coming from the Api Server is structured

@@ -17,7 +17,7 @@ class SignOutButton extends Component {
 
   render() {
     return (
-        <Button onClick={this.signOut}>
+        <Button className="google-button" onClick={this.signOut}>
           Sign Out
         </Button>
     );
