@@ -16,13 +16,13 @@ const uiReducer = (state = INITIAL_STATE, action) => {
     case TOGGLE_OVERLAY:
       return {
         overlay: {
-          ...state.overlay,
+          ...INITIAL_STATE.overlay,
           isOverlayOpen: !state.overlay.isOverlayOpen
         }
       };
     case TOGGLE_LOGIN_OVERLAY:
       return {
-        overlay: { ...state.overlay, isOverlayOpen: true, showLogIn: true }
+        overlay: { isOverlayOpen: true, showLogIn: true, showSignUp: false }
       };
     case TOGGLE_SIGNUP_OVERLAY:
       return {
