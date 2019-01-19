@@ -7,7 +7,7 @@ import { processResponse } from "./actionHelpers";
 export const logInUser = user => {
   return async dispatch => {
     await axios
-      .post("http://localhost:3001/api/v1/auth", { user: user })
+      .post("/auth", { user: user })
       .then(response => {
         processResponse(dispatch, response);
         dispatch({type: TOGGLE_OVERLAY});
@@ -21,7 +21,7 @@ export const logInUser = user => {
 export const signUpUser = user => {
   return async dispatch => {
     await axios
-      .post("http://localhost:3001/api/v1/signup", { user: user })
+      .post("/signup", { user: user })
       .then(response => {
         processResponse(dispatch, response);
         dispatch({action: TOGGLE_OVERLAY})

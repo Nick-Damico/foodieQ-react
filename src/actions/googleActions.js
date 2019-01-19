@@ -20,7 +20,7 @@ export const googleSignOut = () => {
 export const logInGoogleUser = user => {
   const googleUser = buildGoogleUser(user);
   return async dispatch => {
-    const response = await axios.post("http://localhost:3001/api/v1/auth/google", {
+    const response = await axios.post("/auth/google", {
       user: { email: googleUser["data"]["user"]["email"] }
     });
     if (response.status === 200) {
