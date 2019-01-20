@@ -4,7 +4,7 @@ import GoogleAuth from "./GoogleAuth";
 import FormErrors from "./FormErrors";
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
 import "./loginForm.css";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { TweenMax, Power1 } from "gsap/TweenMax";
 import { connect } from "react-redux";
 import { logInUser, setCurrentUser, toggleSignUpOverlay } from "../../actions";
@@ -38,7 +38,12 @@ class LoginForm extends Component {
             {this.props.formErrors.length > 0 ? (
               <FormErrors errors={formErrors} />
             ) : null}
-            <Col xs={{ size: 12 }}>
+            <Col
+              xs={{ size: 12 }}
+              sm={{ size: 10, offset: 1 }}
+              md={{ size: 8,  offset: 2 }}
+              lg={{ size: 6,  offset: 3 }}
+            >
               <div
                 ref={div => (this.formContainer = div)}
                 className="login-form__container"
@@ -76,11 +81,11 @@ class LoginForm extends Component {
                   Not a member?{" "}
                   <Link to="/signup">
                     <Button
-                    onClick={this.props.toggleSignUpOverlay}
-                    className="signup-button"
-                    size="sm"
+                      onClick={this.props.toggleSignUpOverlay}
+                      className="signup-button"
+                      size="sm"
                     >
-                    Sign Up
+                      Sign Up
                     </Button>
                   </Link>
                 </Form>

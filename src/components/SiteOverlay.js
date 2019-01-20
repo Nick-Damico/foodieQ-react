@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./SiteOverlay.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "reactstrap";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { TweenMax } from "gsap/TweenMax";
 import { connect } from "react-redux";
 import { toggleOverlay } from "../actions";
@@ -56,12 +56,18 @@ class SiteOverlay extends Component {
       >
         <Container>
           <Row className="site-overlay__row-1">
-            <Col className="close-container" xs={{ size: 6, offset: 6 }}>
+            <Col
+              className="close-container"
+              xs={{ size: 12 }}
+              sm={{ size: 10, offset: 1 }}
+              md={{ size: 8, offset: 2 }}
+              lg={{ size: 6, offset: 3 }}
+            >
               <Link to="/">
                 <FontAwesomeIcon
-                icon="times"
-                onClick={this.close}
-                className="site-overlay__close-btn"
+                  icon="times"
+                  onClick={this.close}
+                  className="site-overlay__close-btn"
                 />
               </Link>
             </Col>

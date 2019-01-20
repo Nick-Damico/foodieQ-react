@@ -2,7 +2,7 @@ import "./SignupForm.css";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { signUpUser } from "../../actions";
-import FormErrors from './FormErrors';
+import FormErrors from "./FormErrors";
 import { Button, Form, FormGroup, Input, Row, Col } from "reactstrap";
 import { TweenMax, Power1 } from "gsap/TweenMax";
 
@@ -10,16 +10,16 @@ class SignUp extends Component {
   formContainer = null;
   state = { email: "", password: "", password_confirmation: "" };
 
-  handleOnSubmit = (e) => {
+  handleOnSubmit = e => {
     e.preventDefault();
     let user = {
       email: this.state.email,
       password: this.state.password,
       password_confirmation: this.state.password_confirmation
-    }
+    };
 
     this.props.signUpUser(user);
-  }
+  };
 
   componentDidMount() {
     TweenMax.to(this.formContainer, 1.4, {
@@ -37,8 +37,13 @@ class SignUp extends Component {
           className="signup-form__container"
         >
           <Row>
-            { formErrors.length > 0 ? <FormErrors errors={formErrors} /> : null}
-            <Col xs={{ size: 12 }}>
+            {formErrors.length > 0 ? <FormErrors errors={formErrors} /> : null}
+            <Col
+              xs={{ size: 12 }}
+              sm={{ size: 10, offset: 1 }}
+              md={{ size: 8, offset: 2 }}
+              lg={{ size: 6, offset: 3 }}
+            >
               <Form className="login-form" onSubmit={this.handleOnSubmit}>
                 <FormGroup>
                   <Input
@@ -80,21 +85,21 @@ class SignUp extends Component {
                   Sign Up
                 </Button>
               </Form>
+              {
+                this.props.children // Children passed by overlay/SignUp.js
+              }
             </Col>
           </Row>
-          {
-            this.props.children // Children passed by overlay/SignUp.js
-          }
         </div>
       </React.Fragment>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     formErrors: state.auth.errors
-  }
+  };
 };
 
 export default connect(
