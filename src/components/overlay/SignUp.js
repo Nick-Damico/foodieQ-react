@@ -1,41 +1,23 @@
 import React from "react";
 import SignupForm from "../users/SignupForm";
-import GoogleAuth from "../users/GoogleAuth";
 import Greeting from "./Greeting";
-import { connect } from "react-redux";
-import { toggleLogInOverlay } from "../../actions";
-import { Button, Row, Col } from "reactstrap";
-import { Link } from 'react-router-dom';
-import './SignUp.css';
+import { Row, Col } from "reactstrap";
 
-const SignUp = (props) => {
+const SignUp = () => {
   return (
-    <React.Fragment>
-      <Greeting>
-        <SignupForm>
-          <Row>
-            <Col xs={{ size: 12 }} className="google-auth__col">
-              <GoogleAuth text={"Sign Up with Google"} />
-              <br />
-              Already a member?{" "}
-              <Link to="/login">
-                <Button
-                onClick={props.toggleLogInOverlay}
-                className="login-button"
-                size="sm"
-                >
-                Login
-                </Button>
-              </Link>
-            </Col>
-          </Row>
-        </SignupForm>
-      </Greeting>
-    </React.Fragment>
+    <Greeting>
+      <Row>
+        <Col
+          xs={{ size: 12 }}
+          sm={{ size: 10, offset: 1 }}
+          md={{ size: 8, offset: 2 }}
+          lg={{ size: 6, offset: 3 }}
+        >
+          <SignupForm />
+        </Col>
+      </Row>
+    </Greeting>
   );
-}
+};
 
-export default connect(
-  null,
-  { toggleLogInOverlay }
-)(SignUp);
+export default SignUp;

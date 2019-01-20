@@ -1,6 +1,5 @@
 import "./loginForm.css";
 import React, { Component } from "react";
-import Greeting from "../overlay/Greeting";
 import GoogleAuth from "./GoogleAuth";
 import FormErrors from "./FormErrors";
 import { Button, Form, FormGroup, Input } from "reactstrap";
