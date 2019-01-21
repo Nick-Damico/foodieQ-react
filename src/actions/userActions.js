@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_CURRENT_USER, TOGGLE_OVERLAY } from "./types";
+import { SET_CURRENT_USER, TOGGLE_OVERLAY, APP_SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
 
@@ -10,7 +10,7 @@ export const logInUser = user => {
       .post("/auth", { user: user })
       .then(response => {
         processResponse(dispatch, response);
-        dispatch({type: TOGGLE_OVERLAY});
+        dispatch({ type: TOGGLE_OVERLAY });
       })
       .catch(error => {
         processResponse(dispatch, error.response);
@@ -24,7 +24,7 @@ export const signUpUser = user => {
       .post("/signup", { user: user })
       .then(response => {
         processResponse(dispatch, response);
-        dispatch({action: TOGGLE_OVERLAY});
+        dispatch({ action: TOGGLE_OVERLAY });
       })
       .catch(error => {
         // Below the error messages coming from the Api Server is structured
@@ -34,15 +34,31 @@ export const signUpUser = user => {
         // requires the least amount of coding changes. The errors are set by
         // the Devise gem on the server side and in the future I may try to
         // move this code there.
-        let errors = []
+        let errors = [];
         for (let key in error.response.data) {
-          error.response.data[key][0] = `${key} ${error.response.data[key]}`
+          error.response.data[key][0] = `${key} ${error.response.data[key]}`;
           errors = [...errors, ...error.response.data[key]];
         }
         error.response.data.errors = errors;
         processResponse(dispatch, error.response);
       });
   };
+};
+
+export const jwtLogin = token => {
+  return async dispatch => {
+    await axios
+      .post("/jwt-login", {}, { headers: { Authorization: "Bearer " + token } })
+      .then(response => {
+        processResponse(dispatch, response);
+      })
+      .catch(error => {});
+  };
+};
+
+export const signOut = () => {
+  localStorage.removeItem('foodieq-token');
+  return { type: APP_SIGN_OUT };
 };
 
 export const setCurrentUser = () => {

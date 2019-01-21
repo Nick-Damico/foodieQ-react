@@ -7,10 +7,20 @@ import LandingPage from "./pages/LandingPage";
 import SiteOverlay from "./SiteOverlay";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { connect } from "react-redux";
+import { jwtLogin } from '../actions';
 import { faTimes, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 library.add(faTimes, faUserCircle);
 
 class App extends Component {
+
+  componentDidMount() {
+    const token = localStorage.getItem("foodieq-token");
+    const { isSignedIn } = this.props;
+    if (token && !isSignedIn) {
+      this.props.jwtLogin(token);
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -34,5 +44,5 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  {}
+  { jwtLogin }
 )(App);
