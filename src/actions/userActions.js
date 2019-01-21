@@ -3,11 +3,13 @@ import { SET_CURRENT_USER, TOGGLE_OVERLAY, APP_SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
 
+const apiUrl = 'https://foodieq-api.herokuapp.com/';
 // Login To Api App, success should dispatch(SIGN_IN)
 export const logInUser = user => {
+  debugger;
   return async dispatch => {
     await axios
-      .post("/auth", { user: user })
+      .post(`${apiUrl}/auth`, { user: user })
       .then(response => {
         processResponse(dispatch, response);
         dispatch({ type: TOGGLE_OVERLAY });
@@ -21,7 +23,7 @@ export const logInUser = user => {
 export const signUpUser = user => {
   return async dispatch => {
     await axios
-      .post("/signup", { user: user })
+      .post(`${apiUrl}/signup`, { user: user })
       .then(response => {
         processResponse(dispatch, response);
         dispatch({ action: TOGGLE_OVERLAY });
@@ -48,7 +50,7 @@ export const signUpUser = user => {
 export const jwtLogin = token => {
   return async dispatch => {
     await axios
-      .post("/jwt-login", {}, { headers: { Authorization: "Bearer " + token } })
+      .post(`${apiUrl}/jwt-login`, {}, { headers: { Authorization: "Bearer " + token } })
       .then(response => {
         processResponse(dispatch, response);
       })
@@ -57,7 +59,7 @@ export const jwtLogin = token => {
 };
 
 export const signOut = () => {
-  localStorage.removeItem('foodieq-token');
+  localStorage.removeItem("foodieq-token");
   return { type: APP_SIGN_OUT };
 };
 

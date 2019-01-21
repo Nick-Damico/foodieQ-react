@@ -6,6 +6,7 @@ import {
   SET_CURRENT_USER,
   TOGGLE_OVERLAY
 } from "./types";
+const apiUrl = 'https://foodieq-api.herokuapp.com/';
 
 export const googleSignIn = user => {
   return dispatch => {
@@ -20,7 +21,7 @@ export const googleSignOut = () => {
 export const logInGoogleUser = user => {
   const googleUser = buildGoogleUser(user);
   return async dispatch => {
-    const response = await axios.post("/auth/google", {
+    const response = await axios.post(`${apiUrl}/auth/google`, {
       user: { email: googleUser["data"]["user"]["email"] }
     });
     if (response.status === 200) {
