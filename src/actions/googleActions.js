@@ -6,7 +6,7 @@ import {
   SET_CURRENT_USER,
   TOGGLE_OVERLAY
 } from "./types";
-const apiUrl = 'https://foodieq-api.herokuapp.com/';
+const apiUrl = 'https://foodieq-api.herokuapp.com/api/v1';
 
 export const googleSignIn = user => {
   return dispatch => {
