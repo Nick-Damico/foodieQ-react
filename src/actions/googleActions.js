@@ -24,7 +24,7 @@ export const logInGoogleUser = user => {
       user: { email: googleUser["data"]["user"]["email"] }
     });
     if (response.status === 200) {
-      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("foodieq-token", response.data.token);
       dispatch({ type: SET_CURRENT_USER, payload: googleUser });
       dispatch({ type: TOGGLE_OVERLAY });
     }

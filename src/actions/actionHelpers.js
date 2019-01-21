@@ -15,7 +15,9 @@ export const buildGoogleUser = user => {
 };
 
 export const successfulResponse = (dispatch, response) => {
-  localStorage.setItem("token", response.data.token);
+  if (response.data.token) {
+    localStorage.setItem("foodieq-token", response.data.token);
+  }
   dispatch({ type: APP_SIGN_IN });
   dispatch({ type: SET_CURRENT_USER, payload: response });
 };
