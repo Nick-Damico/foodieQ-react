@@ -5,6 +5,7 @@ import { googleSignIn, googleSignOut, logInGoogleUser } from "../../actions";
 
 class GoogleAuth extends Component {
   componentDidMount() {
+    console.log(process.env.REACT_APP_GOOGLE_CLIENT_ID)
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
@@ -12,6 +13,7 @@ class GoogleAuth extends Component {
           scope: "email"
         })
         .then(() => {
+          debugger;
           this.auth = window.gapi.auth2.getAuthInstance();
           this.onAuthChange(this.auth.isSignedIn.get());
           this.auth.isSignedIn.listen(this.onAuthChange);
