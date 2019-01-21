@@ -6,15 +6,3 @@
 .login-form__container {
   opacity: 0;
 }
-
-.error-message {
-  list-style-position: inside;
-  padding: 15px 10px;
-  background-color: #ed4659;
-  font-size: 1.3rem;
-  margin-bottom: 16px;
-}
-
-.error-message__item {
-  list-style-position: inside;
-}

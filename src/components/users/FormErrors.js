@@ -1,5 +1,5 @@
+import './FormErrors.css';
 import React from 'react';
-import { Col } from 'reactstrap';
 
 const FormErrors = ({errors}) => {
   let uniq_errors = [...new Set(errors)];
@@ -10,11 +10,7 @@ const FormErrors = ({errors}) => {
     </li>
   ));
 
-  return (
-    <Col xs={{ size: 12 }}>
-      <ul className="error-message">{errorItems}</ul>
-    </Col>
-  );
+  return <ul className="error-message">{errorItems}</ul>
 };
 
 export default FormErrors;
