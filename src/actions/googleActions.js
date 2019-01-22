@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { buildGoogleUser } from "./actionHelpers";
+import { apiUrl } from './api';
 import {
   APP_SIGN_IN,
   APP_SIGN_OUT,
   SET_CURRENT_USER,
   TOGGLE_OVERLAY
 } from "./types";
-const apiUrl = 'https://foodieq-api.herokuapp.com/api/v1';
 
 export const googleSignIn = user => {
   return dispatch => {

@@ -2,8 +2,7 @@ import axios from "axios";
 import { SET_CURRENT_USER, TOGGLE_OVERLAY, APP_SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
-
-const apiUrl = 'https://foodieq-api.herokuapp.com/api/v1';
+import { apiUrl } from './api';
 // Login To Api App, success should dispatch(SIGN_IN)
 export const logInUser = user => {
   return async dispatch => {
@@ -13,7 +12,7 @@ export const logInUser = user => {
         processResponse(dispatch, response);
         dispatch({ type: TOGGLE_OVERLAY });
       })
-      .catch(error => {      
+      .catch(error => {
         processResponse(dispatch, error.response);
       });
   };
