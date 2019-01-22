@@ -1,14 +1,14 @@
-import React, { Component } from "react";
 import "./SiteOverlay.css";
+import React, { Component } from "react";
+import LoginSignup from "./LoginSignup";
+import Login from "./Login";
+import SignUp from "./SignUp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import { TweenMax } from "gsap/TweenMax";
 import { connect } from "react-redux";
-import { toggleOverlay } from "../actions";
-import Login from "./overlay/Login";
-import SignUp from "./overlay/SignUp";
-import LoginSignup from "./overlay/LoginSignup";
+import { toggleOverlay } from "../../actions";
 
 class SiteOverlay extends Component {
   constructor(props) {

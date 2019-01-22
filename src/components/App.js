@@ -4,7 +4,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 // Components
 import NavigationBar from "./NavigationBar";
 import LandingPage from "./pages/LandingPage";
-import SiteOverlay from "./SiteOverlay";
+import SiteOverlay from "./overlay/SiteOverlay";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { connect } from "react-redux";
 import { jwtLogin } from '../actions';
