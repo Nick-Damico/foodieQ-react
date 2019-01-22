@@ -5,7 +5,6 @@ import { googleSignIn, googleSignOut, logInGoogleUser } from "../../actions";
 
 class GoogleAuth extends Component {
   componentDidMount() {
-    debugger;
     window.gapi.load("client:auth2", () => {
       window.gapi.client
         .init({
