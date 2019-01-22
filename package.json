@@ -18,10 +18,11 @@
     "react-scripts": "2.0.5",
     "reactstrap": "^6.5.0",
     "redux": "^4.0.1",
+    "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_ENV=development react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
