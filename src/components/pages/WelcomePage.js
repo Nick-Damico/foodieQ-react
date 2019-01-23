@@ -6,7 +6,7 @@ const WelcomePage = (props) => {
     <Jumbotron>
       <h2 className="display-3">Welcome back to FoodieQ</h2>
       <p className="lead">
-        The webs Best community recipe sharing and blogging platform.
+        The webs Best community-driven recipe sharing and blogging platform.
       </p>
     </Jumbotron>
   );
