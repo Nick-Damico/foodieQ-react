@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import GoogleAuth from "./GoogleAuth";
 import FormErrors from "./FormErrors";
 import { Button, Form, FormGroup, Input } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { TweenMax, Power1 } from "gsap/TweenMax";
 import { connect } from "react-redux";
 import { logInUser, setCurrentUser, toggleSignUpOverlay } from "../../actions";
@@ -30,6 +30,10 @@ class LoginForm extends Component {
 
   render() {
     const { formErrors } = this.props;
+
+    if (this.props.currentUser.id) {
+      return <Redirect to="/" />
+    }
     return (
       <div
         ref={div => (this.formContainer = div)}
@@ -84,7 +88,8 @@ class LoginForm extends Component {
 
 const mapStateToProps = state => {
   return {
-    formErrors: state.auth.errors
+    formErrors: state.auth.errors,
+    currentUser: state.currentUser
   };
 };
 
