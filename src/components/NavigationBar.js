@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
-import SignOutButton from './users/SignOutButton';
+import SignOutButton from "./users/SignOutButton";
 import { connect } from "react-redux";
 import logo from "../images/foodieq-logo.svg";
 import "./NavigationBar.css";
@@ -44,8 +44,8 @@ class NavigationBar extends Component {
           </Link>
         </NavItem>
       </Nav>
-    )
-  };
+    );
+  }
 
   loggedInLinks() {
     return (
@@ -56,20 +56,12 @@ class NavigationBar extends Component {
           </Link>
         </NavItem>
         <NavItem>
-          <Link
-            to="/recipes/new"
-            className="nav-link text-black"
-            onClick={() => this.props.toggleSignUpOverlay()}
-          >
+          <Link to="/recipes/new" className="nav-link text-black">
             Create Recipe
           </Link>
         </NavItem>
         <NavItem>
-          <Link
-            to="/blogs"
-            className="nav-link text-black"
-            onClick={() => this.props.toggleLogInOverlay()}
-          >
+          <Link to="/blogs" className="nav-link text-black">
             Cooking Blogs
           </Link>
         </NavItem>
@@ -78,32 +70,37 @@ class NavigationBar extends Component {
         </NavItem>
       </Nav>
     );
-  };
+  }
 
   render() {
-    const {isSignedIn} = this.props;
+    const { isSignedIn } = this.props;
 
     return (
       <Navbar color="light" light expand>
-        <div className="hamburger-nav" onClick={() => this.props.toggleOverlay()}>
+        <div
+          className="hamburger-nav"
+          onClick={() => this.props.toggleOverlay()}
+        >
           <div className="hamburger-nav__bar1" />
           <div className="hamburger-nav__bar2" />
           <div className="hamburger-nav__bar3" />
         </div>
         <NavbarBrand>
-          <img className="brand-logo" src={logo} alt="Foodie Q" />
+          <Link to="/">
+            <img className="brand-logo" src={logo} alt="Foodie Q" />
+          </Link>
         </NavbarBrand>
         {isSignedIn ? this.loggedInLinks() : this.loggedOutLinks()}
       </Navbar>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = state => {
   return {
     isSignedIn: state.auth.isSignedIn
-  }
-}
+  };
+};
 export default connect(
   mapStateToProps,
   { toggleOverlay, toggleLogInOverlay, toggleSignUpOverlay, googleSignOut }
