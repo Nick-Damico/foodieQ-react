@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+<<<<<<< HEAD
 import { Navbar, Nav, NavItem } from "reactstrap";
+=======
+import { Navbar, NavbarBrand, Nav, NavItem } from "reactstrap";
+>>>>>>> 2e551218d9a61334bff968209c423e00797af39c
 import SignOutButton from "./users/SignOutButton";
 import { connect } from "react-redux";
 import logo from "../images/foodieq-logo.svg";
@@ -85,9 +89,17 @@ class NavigationBar extends Component {
           <div className="hamburger-nav__bar2" />
           <div className="hamburger-nav__bar3" />
         </div>
+<<<<<<< HEAD
         <Link to="/">
           <img className="brand-logo" src={logo} alt="Foodie Q" />
         </Link>
+=======
+        <NavbarBrand>
+          <Link to="/">
+            <img className="brand-logo" src={logo} alt="Foodie Q" />
+          </Link>
+        </NavbarBrand>
+>>>>>>> 2e551218d9a61334bff968209c423e00797af39c
         {isSignedIn ? this.loggedInLinks() : this.loggedOutLinks()}
       </Navbar>
     );
