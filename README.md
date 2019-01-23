@@ -44,8 +44,9 @@ FoodieQ's backend technology is built with Rails and you can read more about it 
 - [X] Add Sign Up form to Modal
 - [X] Add Sign Up button on Login Modal for Users that need that option
 - [ ] Add Client Side Validations to Forms
-- [ ] Display Server Side error messages on unsuccessful Sign up or Login
-- [ ] Redirect to Logged In screen on Successful Sign up Login
+- [X] Display Server Side error messages on unsuccessful Sign up or Login
+- [X] Redirect to Logged In screen on Successful Sign up Login
+- [ ] Implement CRUD operations for Recipes
 - [ ] Finish Landing Page design to inform users of FoodieQ's functionality.
 
 
