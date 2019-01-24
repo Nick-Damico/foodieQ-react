@@ -1,4 +1,10 @@
+.page-wrapper {
+  position: relative;
+  left: 0;
+}
+
 .App {
+  position: relative;
   text-align: center;
 }
 
