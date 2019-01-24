@@ -63,8 +63,8 @@ class App extends Component {
               <Route exact path="/recipes/new" component={CreateRecipe} />
               {this.props.isOverlayOpen ? <SiteOverlay /> : null}
             </div>
+            <SidePanel />
           </div>
-          <SidePanel />
         </BrowserRouter>
       </div>
     );
