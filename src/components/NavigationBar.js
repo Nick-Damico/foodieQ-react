@@ -5,16 +5,25 @@ import SignOutButton from "./users/SignOutButton";
 import { connect } from "react-redux";
 import logo from "../images/foodieq-logo.svg";
 import "./NavigationBar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   toggleOverlay,
+  toggleSidePanel,
   toggleLogInOverlay,
-  toggleSignUpOverlay,
-  googleSignOut
+  toggleSignUpOverlay
 } from "../actions";
 
 class NavigationBar extends Component {
   constructor(props) {
     super();
+  }
+
+  navToggle = () => {
+    if (this.props.isSignedIn) {
+      this.props.toggleSidePanel();
+    } else {
+      this.props.toggleOverlay();
+    }
   }
 
   loggedOutLinks() {
@@ -28,7 +37,7 @@ class NavigationBar extends Component {
         <NavItem>
           <Link
             to="/signup"
-            className="btn nav-link signup-button text-white"
+            className="btn nav-button signup-button text-white"
             onClick={() => this.props.toggleSignUpOverlay()}
           >
             Sign Up
@@ -37,7 +46,7 @@ class NavigationBar extends Component {
         <NavItem>
           <Link
             to="/login"
-            className="btn nav-link login-button text-white"
+            className="btn nav-button login-button text-white"
             onClick={() => this.props.toggleLogInOverlay()}
           >
             Log In
@@ -52,7 +61,7 @@ class NavigationBar extends Component {
       <Nav className="ml-auto" navbar>
         <NavItem>
           <Link to="/recipes" className="nav-link">
-            Recipes
+            <FontAwesomeIcon icon="book" className="book" /> Recipes
           </Link>
         </NavItem>
         <NavItem>
@@ -77,10 +86,7 @@ class NavigationBar extends Component {
 
     return (
       <Navbar color="light" light expand>
-        <div
-          className="hamburger-nav"
-          onClick={() => this.props.toggleOverlay()}
-        >
+        <div className="hamburger-nav" onClick={this.navToggle}>
           <div className="hamburger-nav__bar1" />
           <div className="hamburger-nav__bar2" />
           <div className="hamburger-nav__bar3" />
@@ -101,5 +107,10 @@ const mapStateToProps = state => {
 };
 export default connect(
   mapStateToProps,
-  { toggleOverlay, toggleLogInOverlay, toggleSignUpOverlay, googleSignOut }
+  {
+    toggleOverlay,
+    toggleLogInOverlay,
+    toggleSignUpOverlay,
+    toggleSidePanel
+  }
 )(NavigationBar);

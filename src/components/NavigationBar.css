@@ -17,7 +17,8 @@
 }
 
 /* Navigation */
-.nav-link {
+.nav-link,
+.nav-button {
   margin-right: 4px;
   transition: all .4s ease;
   /* hide on mobile viewports */
@@ -29,8 +30,21 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
+.nav-link {
+  border-bottom: 2px solid white;
+}
+
+.nav-item:hover .nav-link,
+.nav-link:focus,
+.nav-link:active {
+  color: var(--foodieq-blue) !important;
+  border-bottom: 2px solid var(--foodieq-blue);
+  outline: none;
+}
+
 @media (min-width: 500px) {
-  .nav-link {
+  .nav-link,
+  .nav-button {
     position: initial;
     height: initial;
     width: initial;
