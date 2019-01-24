@@ -31,7 +31,7 @@ class LoginForm extends Component {
   render() {
     const { formErrors } = this.props;
 
-    if (this.props.currentUser.id) {
+    if (this.props.isSignedIn) {
       return <Redirect to="/" />
     }
     return (
@@ -89,7 +89,7 @@ class LoginForm extends Component {
 const mapStateToProps = state => {
   return {
     formErrors: state.auth.errors,
-    currentUser: state.currentUser
+    isSignedIn: state.auth.isSignedIn
   };
 };
 
