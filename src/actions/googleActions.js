@@ -3,19 +3,14 @@ import { buildGoogleUser } from "./actionHelpers";
 import { apiUrl } from './api';
 import {
   APP_SIGN_IN,
-  APP_SIGN_OUT,
   SET_CURRENT_USER,
-  TOGGLE_OVERLAY
+  TOGGLE_OVERLAY_OFF
 } from "./types";
 
-export const googleSignIn = user => {
+export const googleSignIn = () => {
   return dispatch => {
     dispatch({ type: APP_SIGN_IN });
   };
-};
-
-export const googleSignOut = () => {
-  return { type: APP_SIGN_OUT };
 };
 
 export const logInGoogleUser = user => {
@@ -27,7 +22,7 @@ export const logInGoogleUser = user => {
     if (response.status === 200) {
       localStorage.setItem("foodieq-token", response.data.token);
       dispatch({ type: SET_CURRENT_USER, payload: googleUser });
-      dispatch({ type: TOGGLE_OVERLAY });
+      dispatch({ type: TOGGLE_OVERLAY_OFF });
     }
   };
 };

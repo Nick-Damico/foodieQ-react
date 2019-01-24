@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
-import { googleSignOut, signOut } from "../../actions";
+import { signOut } from "../../actions";
 
 class SignOutButton extends Component {
-  componentDidMount() {
-    if (window.gapi.auth2) {
-      this.auth = window.gapi.auth2.getAuthInstance();
-    }
-  }
-
   signOut = () => {
-    if (this.auth) {
-      this.auth.signOut();
-      this.props.googleSignOut();
-    } else {
-      this.props.signOut();
+    if (window.gapi.auth2) {
+      let instance = window.gapi.auth2.getAuthInstance();
+      instance.signOut()
     }
+    this.props.signOut();
   };
 
   render() {
@@ -30,5 +23,5 @@ class SignOutButton extends Component {
 
 export default connect(
   null,
-  { googleSignOut, signOut }
+  { signOut }
 )(SignOutButton);

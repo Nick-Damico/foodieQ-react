@@ -2,6 +2,7 @@ import {
   TOGGLE_OVERLAY,
   TOGGLE_LOGIN_OVERLAY,
   TOGGLE_SIGNUP_OVERLAY,
+  TOGGLE_OVERLAY_OFF,
   TOGGLE_SIDE_PANEL
 } from "../actions/types";
 const INITIAL_STATE = {
@@ -25,6 +26,14 @@ const uiReducer = (state = INITIAL_STATE, action) => {
           isOverlayOpen: !state.overlay.isOverlayOpen
         }
       };
+    case TOGGLE_OVERLAY_OFF:
+      return {
+        ...state,
+        overlay: {
+          ...INITIAL_STATE.overlay,
+          isOverlayOpen: false
+        }
+      }
     case TOGGLE_LOGIN_OVERLAY:
       return {
         ...state,

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "reactstrap";
 import { connect } from "react-redux";
-import { googleSignIn, googleSignOut, logInGoogleUser } from "../../actions";
+import { googleSignIn, signOut, logInGoogleUser } from "../../actions";
 
 class GoogleAuth extends Component {
   componentDidMount() {
@@ -22,10 +22,8 @@ class GoogleAuth extends Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       const user = this.auth.currentUser.get();
-      this.props.googleSignIn(user);
+      this.props.googleSignIn();
       this.props.logInGoogleUser(user);
-    } else {
-      this.props.googleSignOut();
     }
   };
 
@@ -38,18 +36,7 @@ class GoogleAuth extends Component {
   };
 
   render() {
-    const {isSignedIn, text} = this.props;
-    if (isSignedIn) {
-      return (
-        <div>
-          <span>
-            Your are signed In{" "}
-            <Button onClick={this.onSignOutClick}>Sign Out</Button>
-          </span>
-        </div>
-      );
-    }
-
+    const {text} = this.props;
     return (
       <Button onClick={this.onSignInClick} size="lg" className="google-button" block>
         {text}
@@ -60,12 +47,11 @@ class GoogleAuth extends Component {
 
 const mapStateToProps = state => {
   return {
-    isSignedIn: state.auth.isSignedIn,
     userEmail: state.auth.userEmail
   };
 };
 
 export default connect(
   mapStateToProps,
-  { googleSignIn, googleSignOut, logInGoogleUser }
+  { googleSignIn, signOut, logInGoogleUser }
 )(GoogleAuth);
