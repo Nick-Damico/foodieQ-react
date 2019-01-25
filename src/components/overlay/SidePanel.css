@@ -1,6 +1,6 @@
 .side-panel {
   position: absolute;
-  background-color: white;
+  background-color: var(--foodieq-lgt-red);
   height: 100%;
   width: 280px;
   top: 0;
@@ -8,6 +8,55 @@
   z-index: 100;
 }
 
-.side-panel__nav {
-  background-color: blue;
+.side-bar__nav {
+  justify-content: space-around;
+  width: 100%;
+  background-color: var(--foodieq-lgt-black);
+  height: 45px;
+}
+
+.side-bar__nav .nav-item,
+.side-bar__nav a {
+  height: 100%;
+  flex-grow: 1;
+}
+
+.side-bar__nav a {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: var(--foodieq-lgt-grey);
+}
+
+.side-bar__nav a:nth-child(-n + 1) {
+  border-right: 1px solid lightgrey;
+}
+
+.side-bar__user-container {
+  padding: 14px 0;
+  background-color: var(--foodieq-lgt-grey);
+}
+
+.side-bar__user-icon-container {
+  display: flex;
+  align-self: flex-start;
+}
+
+.side-bar__email {
+  display: flex;
+  align-self: center;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.side-bar__user-icon {
+  width: 32px !important;
+  height: 32px;
+  margin-bottom: 0;
+  align-self: flex-start;
+}
+
+.user-settings-icon {
+  margin-bottom: 0;
 }

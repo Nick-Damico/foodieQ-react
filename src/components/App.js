@@ -15,9 +15,10 @@ import { jwtLogin } from "../actions";
 import {
   faTimes,
   faUserCircle,
-  faBook
+  faBook,
+  faUserCog
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faTimes, faUserCircle, faBook);
+library.add(faTimes, faUserCircle, faBook, faUserCog);
 
 class App extends Component {
   constructor(props) {
