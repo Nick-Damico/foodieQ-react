@@ -8,6 +8,7 @@ import WelcomePage from "./pages/WelcomePage";
 import SiteOverlay from "./overlay/SiteOverlay";
 import SidePanel from "./overlay/SidePanel";
 import CreateRecipe from "./recipes/CreateRecipe";
+import Footer from "./Footer";
 import { TweenMax, Back } from "gsap/TweenMax";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { connect } from "react-redux";
@@ -51,11 +52,11 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <BrowserRouter>
-          <div className="App-inner">
-            <div className="page-wrapper" ref={this.page}>
-              <NavigationBar />
+      <BrowserRouter>
+        <div className="App">
+          <div className="page-wrapper" ref={this.page}>
+            <NavigationBar />
+            <main className="main">
               {this.props.isSignedIn ? (
                 <Route exact path="/" component={WelcomePage} />
               ) : (
@@ -63,11 +64,12 @@ class App extends Component {
               )}
               <Route exact path="/recipes/new" component={CreateRecipe} />
               {this.props.isOverlayOpen ? <SiteOverlay /> : null}
-            </div>
-            <SidePanel />
+            </main>
+            <Footer />
           </div>
-        </BrowserRouter>
-      </div>
+          <SidePanel />
+        </div>
+      </BrowserRouter>
     );
   }
 }

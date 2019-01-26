@@ -1,6 +1,5 @@
 import "./SidePanel.css";
 import React, { Component } from "react";
-import Greeting from "./Greeting";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Nav, NavItem } from "reactstrap";
 import { TweenMax, Back } from "gsap/TweenMax";
