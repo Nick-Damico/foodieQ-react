@@ -5,7 +5,7 @@ import { Container } from "reactstrap";
 const Footer = () => {
   return (
     <footer className="footer">
-      FoodieQ &copy;2019. nicholasdamico.net
+      <small>FoodieQ &copy;2019. nicholasdamico.net</small>
     </footer>
   );
 };
