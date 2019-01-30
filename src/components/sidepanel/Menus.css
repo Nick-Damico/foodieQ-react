@@ -1,0 +1,23 @@
+.menus__nav-item {
+  flex-direction: row;
+  width: 100%;
+}
+
+.menus__nav {
+  flex-direction: column;
+  width: 100%;
+}
+
+.menus__nav-image {
+  width: 48px;
+}
+
+.menus__text-container {
+  align-items: center;
+}
+
+.menus__text {
+  color: white !important;
+  text-align: left;
+  margin: 0;
+}

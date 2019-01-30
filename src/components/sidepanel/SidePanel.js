@@ -1,5 +1,6 @@
 import "./SidePanel.css";
 import React, { Component } from "react";
+import Menus from "./Menus";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Nav, NavItem } from "reactstrap";
 import { TweenMax, Back } from "gsap/TweenMax";
@@ -61,6 +62,9 @@ class SidePanel extends Component {
                 <Link to="/blogs">Graph</Link>
               </NavItem>
             </Nav>
+          </Row>
+          <Row>
+            <Menus />
           </Row>
         </Container>
       </aside>
