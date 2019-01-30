@@ -5,6 +5,10 @@ import { Container, Row, Col, Nav, NavItem } from "reactstrap";
 import { TweenMax, Back } from "gsap/TweenMax";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { connect } from "react-redux";
+import FoodieqCog  from "../../images/sidebar-icons/foodieq-cog.svg";
+import MenuIcon from "../../images/sidebar-icons/menu-icon.svg";
+import FoodieqIcon from "../../images/sidebar-icons/Foodieq-light-icon.svg";
+import GraphIcon from "../../images/sidebar-icons/graph.svg";
 
 class SidePanel extends Component {
   constructor(props) {
@@ -31,24 +35,30 @@ class SidePanel extends Component {
     return (
       <aside ref={this.sidePanel} className="side-panel">
         <Container>
-          <Row className="side-bar__user-container">
-            <Col xs={{ size: 2 }} className="side-bar__user-icon-container">
-              <FontAwesomeIcon icon="user-circle" className="side-bar__user-icon" />
+          <Row className="side-panel__user-container">
+            <Col xs={{ size: 2 }} className="side-panel__user-icon-container">
+              <FontAwesomeIcon icon="user-circle" className="side-panel__user-icon" />
             </Col>
-            <Col xs={{ size: 10 }} className="side-bar__email">
+            <Col xs={{ size: 8 }} className="side-panel__email">
               { email }
+            </Col>
+            <Col xs={{ size: 2 }}>
+              <img className="icon icon-cog" src={FoodieqCog} alt="User Options" />
             </Col>
           </Row>
           <Row>
-            <Nav className="side-bar__nav">
+            <Nav className="side-panel__nav">
               <NavItem>
-                <Link to="/recipes">Recipes</Link>
+                <img className="side-panel__nav-icon menu-icon" src={MenuIcon} alt="menu items" />
+                <Link to="/recipes">Menu</Link>
               </NavItem>
               <NavItem>
-                <Link to="/recipes/new">Favorites</Link>
+                <img className="side-panel__nav-icon recipe-icon" src={FoodieqIcon} alt="Recipes" />
+                <Link to="/recipes/new">Recipes</Link>
               </NavItem>
               <NavItem>
-                <Link to="/blogs">Blogs</Link>
+                <img className="side-panel__nav-icon graph-icon" src={GraphIcon} alt="Graph" />
+                <Link to="/blogs">Graph</Link>
               </NavItem>
             </Nav>
           </Row>
