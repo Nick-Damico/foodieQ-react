@@ -49,15 +49,15 @@ class SidePanel extends Component {
           </Row>
           <Row>
             <Nav className="side-panel__nav">
-              <NavItem>
+              <NavItem className="side-panel__nav-item">
                 <img className="side-panel__nav-icon menu-icon" src={MenuIcon} alt="menu items" />
                 <Link to="/recipes">Menu</Link>
               </NavItem>
-              <NavItem>
+              <NavItem className="side-panel__nav-item">
                 <img className="side-panel__nav-icon recipe-icon" src={FoodieqIcon} alt="Recipes" />
                 <Link to="/recipes/new">Recipes</Link>
               </NavItem>
-              <NavItem>
+              <NavItem className="side-panel__nav-item">
                 <img className="side-panel__nav-icon graph-icon" src={GraphIcon} alt="Graph" />
                 <Link to="/blogs">Graph</Link>
               </NavItem>

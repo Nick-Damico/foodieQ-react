@@ -28,7 +28,7 @@
 
 /* NAVIGATION STYLES */
 
-.nav-item {
+.side-panel__nav-item {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,13 +38,13 @@
   transition: background-color .5s ease-in-out;
 }
 
-.nav-item a {
+.side-panel__nav-item a {
   color: white;
 }
 
-.nav-item:hover,
-.nav-item:active,
-.nav-item:focus {
+.side-panel__nav-item:hover,
+.side-panel__nav-item:active,
+.side-panel__nav-item:focus {
   background-color: var(--foodieq-drker-mint);
 }
 
