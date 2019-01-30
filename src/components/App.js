@@ -6,7 +6,7 @@ import NavigationBar from "./NavigationBar";
 import LandingPage from "./pages/LandingPage";
 import WelcomePage from "./pages/WelcomePage";
 import SiteOverlay from "./overlay/SiteOverlay";
-import SidePanel from "./overlay/SidePanel";
+import SidePanel from "./sidepanel/SidePanel";
 import CreateRecipe from "./recipes/CreateRecipe";
 import Footer from "./Footer";
 import { TweenMax, Back } from "gsap/TweenMax";

@@ -1,3 +1,4 @@
+/* CONTAINERS  */
 .side-panel {
   position: absolute;
   background-color: var(--foodieq-mint);
@@ -14,22 +15,18 @@
   background-color: var(--foodieq-drk-mint);
 }
 
-.side-panel__nav-icon {
-  width: 32px;
+.side-panel__user-container {
+  background-color: var(--foodieq-mint);
+  padding: 14px 0;
 }
 
-.menu-icon {
-  padding-bottom: 8px;
-  width: 42px;
+.side-panel__user-icon-container {
+  display: flex;
+  align-self: flex-start;
 }
 
-.graph-icon {
-  padding-bottom: 8px;
-}
 
-.recipe-icon {
-  padding-bottom: 4px;
-}
+/* NAVIGATION STYLES */
 
 .nav-item {
   display: flex;
@@ -51,16 +48,6 @@
   background-color: var(--foodieq-drker-mint);
 }
 
-.side-panel__user-container {
-  background-color: var(--foodieq-mint);
-  padding: 14px 0;
-}
-
-.side-panel__user-icon-container {
-  display: flex;
-  align-self: flex-start;
-}
-
 .side-panel__email {
   display: flex;
   align-self: center;
@@ -68,6 +55,7 @@
   flex-direction: row;
   color: white;
 }
+
 
 /* ICONS  */
 
@@ -85,4 +73,21 @@
 
 .icon-cog {
   width: 22px;
+}
+
+.side-panel__nav-icon {
+  width: 32px;
+}
+
+.menu-icon {
+  padding-bottom: 8px;
+  width: 42px;
+}
+
+.graph-icon {
+  padding-bottom: 8px;
+}
+
+.recipe-icon {
+  padding-bottom: 4px;
 }
