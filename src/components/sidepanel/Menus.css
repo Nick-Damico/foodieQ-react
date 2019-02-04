@@ -4,6 +4,13 @@
   align-items: center;
   flex-direction: row;
   width: 100%;
+  transition: background-color .5s ease-in-out;
+}
+
+.menus__nav-item:hover,
+.menus__nav-item:focus,
+.menus__nav-item:active {
+  background-color: var(--foodieq-drker-mint);
 }
 
 .menus__nav {
