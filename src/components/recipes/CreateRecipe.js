@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import classNames from 'classnames'
+import RecipeImageDropZone from '../DropZone';
 import { Field, reduxForm } from "redux-form";
 import { Form, FormGroup, Label, Input, Row, Col, Container, Button } from "reactstrap";
 
@@ -10,7 +12,7 @@ class CreateRecipe extends Component {
         <Input {...input} type={type} placeholder={placeholder} />
       </FormGroup>
     );
-  }
+  };
 
   renderCheckboxInput({ input }) {
     return (
@@ -37,6 +39,10 @@ class CreateRecipe extends Component {
             lg={{ size: 6, offset: 3 }}
           >
             <Form className="text-left">
+              <Field
+                component={RecipeImageDropZone}                
+                name="recipe[image]"
+              />
               <Field
                 component={this.renderTextInput}
                 type="text"
@@ -75,7 +81,7 @@ class CreateRecipe extends Component {
         </Row>
       </Container>
     );
-  }
-}
+  };
+};
 
 export default reduxForm({ form: "recipeCreate" })(CreateRecipe);
