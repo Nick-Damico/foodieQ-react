@@ -1,18 +1,26 @@
 import React, { Component } from "react";
-import classNames from 'classnames'
-import RecipeImageDropZone from '../DropZone';
+import FieldFileInput from "../DropZone";
 import { Field, reduxForm } from "redux-form";
-import { Form, FormGroup, Label, Input, Row, Col, Container, Button } from "reactstrap";
+import {
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  Row,
+  Col,
+  Container,
+  Button
+} from "reactstrap";
 
 class CreateRecipe extends Component {
-  renderTextInput({ input, label, type = "text", placeholder="" }) {
+  renderTextInput({ input, label, type = "text", placeholder = "" }) {
     return (
       <FormGroup>
         <Label>{label}</Label>
         <Input {...input} type={type} placeholder={placeholder} />
       </FormGroup>
     );
-  };
+  }
 
   renderCheckboxInput({ input }) {
     return (
@@ -23,6 +31,15 @@ class CreateRecipe extends Component {
         </Label>
       </FormGroup>
     );
+  }
+
+  handleOnDrop(newImageFile) {
+    let image = {};
+    for(let key in newImageFile[0]) {
+      image[key] = newImageFile[0][key]
+    }
+    debugger;
+    this.setState({ recipeImage: image })
   };
 
   render() {
@@ -40,8 +57,8 @@ class CreateRecipe extends Component {
           >
             <Form className="text-left">
               <Field
-                component={RecipeImageDropZone}                
                 name="recipe[image]"
+                component={FieldFileInput}
               />
               <Field
                 component={this.renderTextInput}
@@ -58,17 +75,17 @@ class CreateRecipe extends Component {
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Ingredients</h4>
                 <Field
-                component={this.renderTextInput}
-                name="recipe[ingredients][0]"
-                placeholder="ex. 1cup of rice"
+                  component={this.renderTextInput}
+                  name="recipe[ingredients][0]"
+                  placeholder="ex. 1cup of rice"
                 />
               </FormGroup>
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Steps</h4>
                 <Field
-                component={this.renderTextInput}
-                name="recipe[steps][0]"
-                placeholder="Give step by step instructions"
+                  component={this.renderTextInput}
+                  name="recipe[steps][0]"
+                  placeholder="Give step by step instructions"
                 />
               </FormGroup>
               <Field
@@ -81,7 +98,7 @@ class CreateRecipe extends Component {
         </Row>
       </Container>
     );
-  };
-};
+  }
+}
 
 export default reduxForm({ form: "recipeCreate" })(CreateRecipe);
