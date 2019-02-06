@@ -1,6 +1,5 @@
 import "./Footer.css";
 import React from "react";
-import { Container } from "reactstrap";
 
 const Footer = () => {
   return (
