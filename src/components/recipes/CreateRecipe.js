@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import FieldFileInput from "../DropZone";
+import FieldFileInput from "../FieldFileInput";
 import { Field, reduxForm } from "redux-form";
 import {
   Form,
@@ -33,15 +33,6 @@ class CreateRecipe extends Component {
     );
   }
 
-  handleOnDrop(newImageFile) {
-    let image = {};
-    for(let key in newImageFile[0]) {
-      image[key] = newImageFile[0][key]
-    }
-    debugger;
-    this.setState({ recipeImage: image })
-  };
-
   render() {
     return (
       <Container>
@@ -56,10 +47,7 @@ class CreateRecipe extends Component {
             lg={{ size: 6, offset: 3 }}
           >
             <Form className="text-left">
-              <Field
-                name="recipe[image]"
-                component={FieldFileInput}
-              />
+              <Field name="recipe[image]" component={FieldFileInput} />
               <Field
                 component={this.renderTextInput}
                 type="text"
