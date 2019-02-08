@@ -1,6 +1,5 @@
 import "./CreateRecipe.css";
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 import FieldFileInput from "../FieldFileInput";
 import { Field, reduxForm } from "redux-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,9 +19,13 @@ class CreateRecipe extends Component {
     super();
     this.increaseIngredientCount = this.increaseIngredientCount.bind(this);
     this.increaseStepCount = this.increaseStepCount.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
+    this.renderIngredientInputs = this.renderIngredientInputs.bind(this);
     this.state = {
       ingredientInputCount: 1,
-      stepInputCount: 1
+      stepInputCount: 1,
+      removedIngredientIndex: [],
+      removedStepIndex: []
     };
   }
 
@@ -47,23 +50,47 @@ class CreateRecipe extends Component {
   }
 
   increaseIngredientCount() {
-    this.setState({ ingredientInputCount: ++this.state.ingredientInputCount });
+    this.setState({
+      ingredientInputCount: this.state.ingredientInputCount + 1
+    });
   }
 
   increaseStepCount() {
-    this.setState({ stepInputCount: ++this.state.stepInputCount });
+    this.setState({ stepInputCount: this.state.stepInputCount + 1 });
+  }
+
+  removeIngredient(e, i) {
+    this.setState({
+      removedIngredientIndex: [...this.state.removedIngredientIndex, i]
+    });
+  }
+
+  removeStep(e, i) {
+    this.setState({
+      removedStepIndex: [...this.state.removedStepIndex, i]
+    });
   }
 
   renderIngredientInputs() {
+    const { ingredientInputCount } = this.state;
     let ingredientInputs = [];
-    for (let i = 0; i < this.state.ingredientInputCount; i++) {
+
+    for (let i = 0; i < ingredientInputCount; i++) {
       ingredientInputs.push(
-        <Field
-          key={`${i}`}
-          component={this.renderTextInput}
-          name={`recipe[ingredients][${i}]`}
-          placeholder="ex. 1cup of water"
-        />
+        <div className="input-wrapper" key={`${i}`}>
+          <Field
+            key={`ingredient-${i}`}
+            component={this.renderTextInput}
+            name={`recipe[ingredients][${i}]`}
+            placeholder="ex. 1cup of water"
+          />
+          <a href="#" onClick={(e) => this.removeIngredient(e, i)}>
+            <FontAwesomeIcon
+              icon="minus-circle"
+              className="recipe-form__minus-sign"
+            />
+          </a>
+        </div>
       );
     }
     return ingredientInputs;
@@ -73,18 +100,32 @@ class CreateRecipe extends Component {
     let stepInputs = [];
     for (let i = 0; i < this.state.stepInputCount; i++) {
       stepInputs.push(
-        <Field
-          key={`${i}`}
-          component={this.renderTextInput}
-          name={`recipe[steps][${i}]`}
-          placeholder="Give step by step instructions"
-        />
+        <div className="input-wrapper" key={`${i}`}>
+          <Field
+            key={`step-${i}`}
+            component={this.renderTextInput}
+            name={`recipe[steps][${i}]`}
+            placeholder="Give step by step instructions"
+          />
+          <FontAwesomeIcon
+            icon="minus-circle"
+            className="recipe-form__minus-sign"
+            onClick={this.removeStep}
+          />
+          <a href="#" onClick={(e) => this.removeStep(e, i)}>
+            <FontAwesomeIcon
+              icon="minus-circle"
+              className="recipe-form__minus-sign"
+            />
+          </a>
+        </div>
       );
     }
     return stepInputs;
   }
 
   render() {
+    const { removedIngredientIndex, removedStepIndex } = this.state;
     let ingredientInputs = this.renderIngredientInputs();
     let stepInputs = this.renderStepInputs();
 
@@ -117,19 +158,23 @@ class CreateRecipe extends Component {
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Ingredients</h4>
                 <div id="ingredients-container">
-                  {ingredientInputs}
+                  {ingredientInputs.filter(
+                    (el, i) => (removedIngredientIndex.includes(i) ? null : el)
+                  )}
                 </div>
                 <FontAwesomeIcon
                   icon="plus-circle"
                   className="recipe-form__plus-sign"
                   onClick={this.increaseIngredientCount}
-                />{" "}
+                />
                 Add Ingredient
               </FormGroup>
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Cooking Steps</h4>
                 <div id="ingredients-container">
-                  {stepInputs}
+                  {stepInputs.filter(
+                    (el, i) => (removedStepIndex.includes(i) ? null : el)
+                  )}
                 </div>
                 <FontAwesomeIcon
                   icon="plus-circle"
