@@ -9,11 +9,16 @@ const LoginSignup = props => {
   return (
     <Greeting>
       <Row>
-        <Col xs={{ size: 12 }} sm={{ size: 8, offset: 2 }}>
+        <Col
+          xs={{ size: 10, offset: 1 }}
+          sm={{ size: 8, offset: 2 }}
+          md={{ size: 6, offset: 3 }}
+          lg={{ size: 4, offset: 4 }}
+        >
           <Link to="/login">
             <Button
               onClick={props.toggleLogInOverlay}
-              className="btn login-button"
+              className="btn login-button mb-3"
               size="lg"
               block
             >
