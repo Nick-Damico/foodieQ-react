@@ -1,4 +1,6 @@
+import "./CreateRecipe.css";
 import React, { Component } from "react";
+import ReactDOM from "react-dom";
 import FieldFileInput from "../FieldFileInput";
 import { Field, reduxForm } from "redux-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,10 +16,19 @@ import {
 } from "reactstrap";
 
 class CreateRecipe extends Component {
+  constructor() {
+    super();
+    this.addIngredientInput = this.addIngredientInput.bind(this);
+
+    this.state = {
+      ingredientInputCount: 1
+    };
+  }
+
   renderTextInput({ input, label, type = "text", placeholder = "" }) {
     return (
       <FormGroup>
-        <Label>{label}</Label>
+        {label ? <Label>{label}</Label> : null}
         <Input {...input} type={type} placeholder={placeholder} />
       </FormGroup>
     );
@@ -34,7 +45,23 @@ class CreateRecipe extends Component {
     );
   }
 
+  addIngredientInput() {
+    this.setState({ ingredientInputCount: ++this.state.ingredientInputCount });
+  }
+
   render() {
+    let ingredientInputs = [];
+    for (let i = 0; i < this.state.ingredientInputCount; i++) {
+      ingredientInputs.push(
+        <Field
+          key={`${i}`}
+          component={this.renderTextInput}
+          name={`recipe[ingredients][${i}]`}
+          placeholder="ex. 1cup of water"
+        />
+      );
+    }
+
     return (
       <Container>
         <h3 className="leading-3 text-left mt-3">
@@ -63,12 +90,15 @@ class CreateRecipe extends Component {
               />
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Ingredients</h4>
-                <Field
-                  component={this.renderTextInput}
-                  name="recipe[ingredients][0]"
-                  placeholder="ex. 1cup of rice"
-                />
-                <FontAwesomeIcon icon="plus-circle" className="recipe-form__plus-sign"/> Add Ingredient
+                <div id="ingredients-container">
+                  {ingredientInputs}
+                </div>
+                <FontAwesomeIcon
+                  icon="plus-circle"
+                  className="recipe-form__plus-sign"
+                  onClick={this.addIngredientInput}
+                />{" "}
+                Add Ingredient
               </FormGroup>
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Cooking Steps</h4>
@@ -77,7 +107,11 @@ class CreateRecipe extends Component {
                   name="recipe[steps][0]"
                   placeholder="Give step by step instructions"
                 />
-                <FontAwesomeIcon icon="plus-circle" className="recipe-form__plus-sign"/> Add Cooking Step
+                <FontAwesomeIcon
+                  icon="plus-circle"
+                  className="recipe-form__plus-sign"
+                />{" "}
+                Add Cooking Step
               </FormGroup>
               <Field
                 component={this.renderCheckboxInput}
