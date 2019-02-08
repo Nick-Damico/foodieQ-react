@@ -18,10 +18,11 @@ import {
 class CreateRecipe extends Component {
   constructor() {
     super();
-    this.addIngredientInput = this.addIngredientInput.bind(this);
-
+    this.increaseIngredientCount = this.increaseIngredientCount.bind(this);
+    this.increaseStepCount = this.increaseStepCount.bind(this);
     this.state = {
-      ingredientInputCount: 1
+      ingredientInputCount: 1,
+      stepInputCount: 1
     };
   }
 
@@ -45,11 +46,15 @@ class CreateRecipe extends Component {
     );
   }
 
-  addIngredientInput() {
+  increaseIngredientCount() {
     this.setState({ ingredientInputCount: ++this.state.ingredientInputCount });
   }
 
-  render() {
+  increaseStepCount() {
+    this.setState({ stepInputCount: ++this.state.stepInputCount });
+  }
+
+  renderIngredientInputs() {
     let ingredientInputs = [];
     for (let i = 0; i < this.state.ingredientInputCount; i++) {
       ingredientInputs.push(
@@ -61,6 +66,27 @@ class CreateRecipe extends Component {
         />
       );
     }
+    return ingredientInputs;
+  }
+
+  renderStepInputs() {
+    let stepInputs = [];
+    for (let i = 0; i < this.state.stepInputCount; i++) {
+      stepInputs.push(
+        <Field
+          key={`${i}`}
+          component={this.renderTextInput}
+          name={`recipe[steps][${i}]`}
+          placeholder="Give step by step instructions"
+        />
+      );
+    }
+    return stepInputs;
+  }
+
+  render() {
+    let ingredientInputs = this.renderIngredientInputs();
+    let stepInputs = this.renderStepInputs();
 
     return (
       <Container>
@@ -96,20 +122,19 @@ class CreateRecipe extends Component {
                 <FontAwesomeIcon
                   icon="plus-circle"
                   className="recipe-form__plus-sign"
-                  onClick={this.addIngredientInput}
+                  onClick={this.increaseIngredientCount}
                 />{" "}
                 Add Ingredient
               </FormGroup>
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Cooking Steps</h4>
-                <Field
-                  component={this.renderTextInput}
-                  name="recipe[steps][0]"
-                  placeholder="Give step by step instructions"
-                />
+                <div id="ingredients-container">
+                  {stepInputs}
+                </div>
                 <FontAwesomeIcon
                   icon="plus-circle"
                   className="recipe-form__plus-sign"
+                  onClick={this.increaseStepCount}
                 />{" "}
                 Add Cooking Step
               </FormGroup>
