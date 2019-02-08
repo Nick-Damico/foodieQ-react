@@ -17,9 +17,10 @@ import {
   faTimes,
   faUserCircle,
   faBook,
-  faUserCog
+  faUserCog,
+  faPlusCircle
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faTimes, faUserCircle, faBook, faUserCog);
+library.add(faTimes, faUserCircle, faBook, faUserCog, faPlusCircle);
 
 class App extends Component {
   constructor(props) {

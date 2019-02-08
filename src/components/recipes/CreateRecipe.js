@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import FieldFileInput from "../FieldFileInput";
 import { Field, reduxForm } from "redux-form";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Form,
   FormGroup,
@@ -67,14 +68,16 @@ class CreateRecipe extends Component {
                   name="recipe[ingredients][0]"
                   placeholder="ex. 1cup of rice"
                 />
+                <FontAwesomeIcon icon="plus-circle" className="recipe-form__plus-sign"/> Add Ingredient
               </FormGroup>
               <FormGroup tag="fieldset">
-                <h4 className="leading-4 text-left mb-0">Steps</h4>
+                <h4 className="leading-4 text-left mb-0">Cooking Steps</h4>
                 <Field
                   component={this.renderTextInput}
                   name="recipe[steps][0]"
                   placeholder="Give step by step instructions"
                 />
+                <FontAwesomeIcon icon="plus-circle" className="recipe-form__plus-sign"/> Add Cooking Step
               </FormGroup>
               <Field
                 component={this.renderCheckboxInput}
