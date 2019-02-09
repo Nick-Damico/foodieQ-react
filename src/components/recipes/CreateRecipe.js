@@ -17,10 +17,11 @@ import {
 class CreateRecipe extends Component {
   constructor() {
     super();
-    this.increaseIngredientCount = this.increaseIngredientCount.bind(this);
-    this.increaseStepCount = this.increaseStepCount.bind(this);
-    this.removeIngredient = this.removeIngredient.bind(this);
-    this.renderIngredientInputs = this.renderIngredientInputs.bind(this);
+
+    this.increaseItemCount = this.increaseItemCount.bind(this);
+    this.removeItem = this.removeItem.bind(this);
+    this.renderInputs = this.renderInputs.bind(this);
+
     this.state = {
       ingredientInputCount: 1,
       stepInputCount: 1,
@@ -49,85 +50,62 @@ class CreateRecipe extends Component {
     );
   }
 
-  increaseIngredientCount() {
-    this.setState({
-      ingredientInputCount: this.state.ingredientInputCount + 1
-    });
+  increaseItemCount(type) {
+    if (type === "ingredient") {
+      this.setState({
+        ingredientInputCount: this.state.ingredientInputCount + 1
+      });
+    } else {
+      this.setState({ stepInputCount: this.state.stepInputCount + 1 });
+    }
   }
 
-  increaseStepCount() {
-    this.setState({ stepInputCount: this.state.stepInputCount + 1 });
+  removeItem(event, index, type) {
+    if (type === "ingredient") {
+      this.setState({
+        removedIngredientIndex: [...this.state.removedIngredientIndex, index]
+      });
+    } else {
+      this.setState({
+        removedStepIndex: [...this.state.removedStepIndex, index]
+      });
+    }
   }
 
-  removeIngredient(e, i) {
-    this.setState({
-      removedIngredientIndex: [...this.state.removedIngredientIndex, i]
-    });
-  }
+  renderInputs(type, placeholderText='') {
+    const { ingredientInputCount, stepInputCount } = this.state;
+    let typeInputs = [];
+    let itemCount = type === 'ingredient' ? ingredientInputCount : stepInputCount;
 
-  removeStep(e, i) {
-    this.setState({
-      removedStepIndex: [...this.state.removedStepIndex, i]
-    });
-  }
-
-  renderIngredientInputs() {
-    const { ingredientInputCount } = this.state;
-    let ingredientInputs = [];
-
-    for (let i = 0; i < ingredientInputCount; i++) {
-      ingredientInputs.push(
+    for (let i = 0; i < itemCount; i++) {
+      typeInputs.push(
         <div className="input-wrapper" key={`${i}`}>
           <Field
-            key={`ingredient-${i}`}
+            key={`${type}-${i}`}
             component={this.renderTextInput}
-            name={`recipe[ingredients][${i}]`}
-            placeholder="ex. 1cup of water"
+            name={`recipe[${type}s][${i}]`}
+            placeholder={placeholderText}
           />
-          <a href="#" onClick={(e) => this.removeIngredient(e, i)}>
-            <FontAwesomeIcon
-              icon="minus-circle"
-              className="recipe-form__minus-sign"
-            />
-          </a>
+          {i > 0 ? (
+            <React.Fragment>
+              <a href="#" onClick={e => this.removeItem(e, i, type)}>
+                <FontAwesomeIcon
+                  icon="minus-circle"
+                  className="recipe-form__minus-sign"
+                />
+              </a>
+            </React.Fragment>
+          ) : null}
         </div>
       );
     }
-    return ingredientInputs;
-  }
-
-  renderStepInputs() {
-    let stepInputs = [];
-    for (let i = 0; i < this.state.stepInputCount; i++) {
-      stepInputs.push(
-        <div className="input-wrapper" key={`${i}`}>
-          <Field
-            key={`step-${i}`}
-            component={this.renderTextInput}
-            name={`recipe[steps][${i}]`}
-            placeholder="Give step by step instructions"
-          />
-          <FontAwesomeIcon
-            icon="minus-circle"
-            className="recipe-form__minus-sign"
-            onClick={this.removeStep}
-          />
-          <a href="#" onClick={(e) => this.removeStep(e, i)}>
-            <FontAwesomeIcon
-              icon="minus-circle"
-              className="recipe-form__minus-sign"
-            />
-          </a>
-        </div>
-      );
-    }
-    return stepInputs;
+    return typeInputs;
   }
 
   render() {
     const { removedIngredientIndex, removedStepIndex } = this.state;
-    let ingredientInputs = this.renderIngredientInputs();
-    let stepInputs = this.renderStepInputs();
+    let ingredientInputs = this.renderInputs('ingredient','ex. 1Cup of Milk');
+    let stepInputs = this.renderInputs('step', 'ex. Add Flour to bowl');
 
     return (
       <Container>
@@ -165,7 +143,7 @@ class CreateRecipe extends Component {
                 <FontAwesomeIcon
                   icon="plus-circle"
                   className="recipe-form__plus-sign"
-                  onClick={this.increaseIngredientCount}
+                  onClick={() => this.increaseItemCount("ingredient")}
                 />
                 Add Ingredient
               </FormGroup>
@@ -179,7 +157,7 @@ class CreateRecipe extends Component {
                 <FontAwesomeIcon
                   icon="plus-circle"
                   className="recipe-form__plus-sign"
-                  onClick={this.increaseStepCount}
+                  onClick={() => this.increaseItemCount("step")}
                 />{" "}
                 Add Cooking Step
               </FormGroup>
