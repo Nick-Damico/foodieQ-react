@@ -3,7 +3,5 @@
 }
 
 .recipe-form__minus-sign {
-  position: absolute;
-  right: -29px;
-  top: 12px;
+  margin-top: 12px;
 }

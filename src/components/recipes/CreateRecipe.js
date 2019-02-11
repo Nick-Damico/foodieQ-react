@@ -80,13 +80,17 @@ class CreateRecipe extends Component {
     for (let i = 0; i < itemCount; i++) {
       typeInputs.push(
         <div className="input-wrapper" key={`${i}`}>
+        <Row>
+        <Col xs={{ size: 10 }} lg={{ size: 11 }}>
           <Field
             key={`${type}-${i}`}
             component={this.renderTextInput}
             name={`recipe[${type}s][${i}]`}
             placeholder={placeholderText}
           />
+          </Col>
           {i > 0 ? (
+            <Col xs={{ size: 2}} lg={{ size: 1 }}>
             <React.Fragment>
               <a href="#" onClick={e => this.removeItem(e, i, type)}>
                 <FontAwesomeIcon
@@ -95,7 +99,9 @@ class CreateRecipe extends Component {
                 />
               </a>
             </React.Fragment>
+            </Col>
           ) : null}
+          </Row>
         </div>
       );
     }
