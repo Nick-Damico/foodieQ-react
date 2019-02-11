@@ -7,7 +7,9 @@
   position: relative;
 }
 
-.recipe-form__minus-sign {
+.recipe-form__minus-sign,
+.recipe-form__minus-sign:hover,
+.recipe-form__minus-sign:active {
   background: transparent;
   border: none;
   color: var(--foodieq-blue);

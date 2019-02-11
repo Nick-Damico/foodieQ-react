@@ -72,35 +72,36 @@ class CreateRecipe extends Component {
     }
   }
 
-  renderInputs(type, placeholderText='') {
+  renderInputs(type, placeholderText = "") {
     const { ingredientInputCount, stepInputCount } = this.state;
     let typeInputs = [];
-    let itemCount = type === 'ingredient' ? ingredientInputCount : stepInputCount;
+    let itemCount =
+      type === "ingredient" ? ingredientInputCount : stepInputCount;
 
     for (let i = 0; i < itemCount; i++) {
       typeInputs.push(
         <div className="input-wrapper" key={`${i}`}>
-        <Row>
-        <Col xs={{ size: 10 }} lg={{ size: 11 }}>
-          <Field
-            key={`${type}-${i}`}
-            component={this.renderTextInput}
-            name={`recipe[${type}s][${i}]`}
-            placeholder={placeholderText}
-          />
-          </Col>
-          {i > 0 ? (
-            <Col xs={{ size: 2}} lg={{ size: 1 }}>
-            <React.Fragment>
-              <Button onClick={e => this.removeItem(e, i, type)}>
-                <FontAwesomeIcon
-                  icon="minus-circle"
-                  className="recipe-form__minus-sign"
-                />
-              </Button>
-            </React.Fragment>
+          <Row>
+            <Col xs={{ size: 10 }} lg={{ size: 11 }}>
+              <Field
+                key={`${type}-${i}`}
+                component={this.renderTextInput}
+                name={`recipe[${type}s][${i}]`}
+                placeholder={placeholderText}
+              />
             </Col>
-          ) : null}
+            {i > 0 ? (
+              <Col xs={{ size: 2 }} lg={{ size: 1 }}>
+                <React.Fragment>
+                  <Button
+                    className="recipe-form__minus-sign"
+                    onClick={e => this.removeItem(e, i, type)}
+                  >
+                    <FontAwesomeIcon icon="minus-circle" />
+                  </Button>
+                </React.Fragment>
+              </Col>
+            ) : null}
           </Row>
         </div>
       );
@@ -110,8 +111,8 @@ class CreateRecipe extends Component {
 
   render() {
     const { removedIngredientIndex, removedStepIndex } = this.state;
-    let ingredientInputs = this.renderInputs('ingredient','ex. 1Cup of Milk');
-    let stepInputs = this.renderInputs('step', 'ex. Add Flour to bowl');
+    let ingredientInputs = this.renderInputs("ingredient", "ex. 1Cup of Milk");
+    let stepInputs = this.renderInputs("step", "ex. Add Flour to bowl");
 
     return (
       <Container>
@@ -146,11 +147,10 @@ class CreateRecipe extends Component {
                     (el, i) => (removedIngredientIndex.includes(i) ? null : el)
                   )}
                 </div>
-                <Button>
+                <Button onClick={() => this.increaseItemCount("ingredient")}>
                   <FontAwesomeIcon
                     icon="plus-circle"
                     className="recipe-form__plus-sign"
-                    onClick={() => this.increaseItemCount("ingredient")}
                   />{" "}
                   Add Ingredient
                 </Button>
@@ -162,11 +162,10 @@ class CreateRecipe extends Component {
                     (el, i) => (removedStepIndex.includes(i) ? null : el)
                   )}
                 </div>
-                <Button>
+                <Button onClick={() => this.increaseItemCount("step")}>
                   <FontAwesomeIcon
                     icon="plus-circle"
                     className="recipe-form__plus-sign"
-                    onClick={() => this.increaseItemCount("step")}
                   />{" "}
                   Add Cooking Step
                 </Button>
