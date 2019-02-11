@@ -92,12 +92,12 @@ class CreateRecipe extends Component {
           {i > 0 ? (
             <Col xs={{ size: 2}} lg={{ size: 1 }}>
             <React.Fragment>
-              <a href="#" onClick={e => this.removeItem(e, i, type)}>
+              <Button onClick={e => this.removeItem(e, i, type)}>
                 <FontAwesomeIcon
                   icon="minus-circle"
                   className="recipe-form__minus-sign"
                 />
-              </a>
+              </Button>
             </React.Fragment>
             </Col>
           ) : null}
@@ -115,7 +115,7 @@ class CreateRecipe extends Component {
 
     return (
       <Container>
-        <h3 className="leading-3 text-left mt-3">
+        <h3 className="leading-3 text-center mt-3">
           Share your latest creation with the world
         </h3>
         <Row>
@@ -125,7 +125,7 @@ class CreateRecipe extends Component {
             md={{ size: 8, offset: 2 }}
             lg={{ size: 6, offset: 3 }}
           >
-            <Form className="text-left">
+            <Form className="create-recipe__form text-left">
               <Field name="recipe[image]" component={FieldFileInput} />
               <Field
                 component={this.renderTextInput}
@@ -146,12 +146,14 @@ class CreateRecipe extends Component {
                     (el, i) => (removedIngredientIndex.includes(i) ? null : el)
                   )}
                 </div>
-                <FontAwesomeIcon
-                  icon="plus-circle"
-                  className="recipe-form__plus-sign"
-                  onClick={() => this.increaseItemCount("ingredient")}
-                />
-                Add Ingredient
+                <Button>
+                  <FontAwesomeIcon
+                    icon="plus-circle"
+                    className="recipe-form__plus-sign"
+                    onClick={() => this.increaseItemCount("ingredient")}
+                  />{" "}
+                  Add Ingredient
+                </Button>
               </FormGroup>
               <FormGroup tag="fieldset">
                 <h4 className="leading-4 text-left mb-0">Cooking Steps</h4>
@@ -160,12 +162,14 @@ class CreateRecipe extends Component {
                     (el, i) => (removedStepIndex.includes(i) ? null : el)
                   )}
                 </div>
-                <FontAwesomeIcon
-                  icon="plus-circle"
-                  className="recipe-form__plus-sign"
-                  onClick={() => this.increaseItemCount("step")}
-                />{" "}
-                Add Cooking Step
+                <Button>
+                  <FontAwesomeIcon
+                    icon="plus-circle"
+                    className="recipe-form__plus-sign"
+                    onClick={() => this.increaseItemCount("step")}
+                  />{" "}
+                  Add Cooking Step
+                </Button>
               </FormGroup>
               <Field
                 component={this.renderCheckboxInput}

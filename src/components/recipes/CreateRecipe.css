@@ -1,7 +1,14 @@
+.create-recipe__form {
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
 .input-wrapper {
   position: relative;
 }
 
 .recipe-form__minus-sign {
-  margin-top: 12px;
+  background: transparent;
+  border: none;
+  color: var(--foodieq-blue);
 }
