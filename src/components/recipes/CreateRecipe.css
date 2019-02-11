@@ -14,3 +14,9 @@
   border: none;
   color: var(--foodieq-blue);
 }
+
+
+/* Form Error */
+.error {
+  color: var(--foodieq-red);
+}

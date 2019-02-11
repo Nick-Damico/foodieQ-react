@@ -30,14 +30,25 @@ class CreateRecipe extends Component {
     };
   }
 
-  renderTextInput({ input, label, type = "text", placeholder = "" }) {
+  renderTextInput = ({ input, meta, label, type = "text", placeholder = "" }) => {
     return (
       <FormGroup>
         {label ? <Label>{label}</Label> : null}
         <Input {...input} type={type} placeholder={placeholder} />
+        {this.renderError(meta)}
       </FormGroup>
     );
   }
+
+  renderError({ error, touched }) {
+    if (touched && error) {
+      return (
+        <div className="ui__error-message">
+          <div className="error">{error}</div>
+        </div>
+      );
+    };
+  };
 
   renderCheckboxInput({ input }) {
     return (
@@ -183,4 +194,21 @@ class CreateRecipe extends Component {
   }
 }
 
-export default reduxForm({ form: "recipeCreate" })(CreateRecipe);
+// Validations
+const validate = formValues => {
+  const errors = { recipe: {} };
+  if (formValues.recipe) {
+    const {recipe} = formValues;
+    if (!recipe.title) {
+      errors.recipe.title = 'You must enter a title';
+    }
+
+    if (!recipe.description) {
+      errors.recipe.description = 'You must enter a description';
+    }
+  }
+
+  return errors;
+};
+
+export default reduxForm({ form: "recipeCreate", validate: validate })(CreateRecipe);
