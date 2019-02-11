@@ -120,6 +120,10 @@ class CreateRecipe extends Component {
     return typeInputs;
   }
 
+  onSubmit(formValues) {
+
+  }
+
   render() {
     const { removedIngredientIndex, removedStepIndex } = this.state;
     let ingredientInputs = this.renderInputs("ingredient", "ex. 1Cup of Milk");
@@ -202,9 +206,15 @@ const validate = formValues => {
     if (!recipe.title) {
       errors.recipe.title = 'You must enter a title';
     }
+    if (recipe.title && recipe.title.length > 100) {
+      errors.recipe.title = "Max length is 100 characters"
+    }
 
     if (!recipe.description) {
       errors.recipe.description = 'You must enter a description';
+    }
+    if (recipe.description && recipe.description.length > 1500) {
+      errors.recipe.description = "Max length is 100 characters"
     }
   }
 
