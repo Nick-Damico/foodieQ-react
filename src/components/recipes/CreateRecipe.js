@@ -2,6 +2,8 @@ import "./CreateRecipe.css";
 import React, { Component } from "react";
 import FieldFileInput from "../FieldFileInput";
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+import { createRecipe } from "../../actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Form,
@@ -21,6 +23,7 @@ class CreateRecipe extends Component {
     this.increaseItemCount = this.increaseItemCount.bind(this);
     this.removeItem = this.removeItem.bind(this);
     this.renderInputs = this.renderInputs.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
       ingredientInputCount: 1,
@@ -30,7 +33,16 @@ class CreateRecipe extends Component {
     };
   }
 
-  renderTextInput = ({ input, meta, label, type = "text", placeholder = "" }) => {
+  ////////////////////////////////
+  // Helpers
+  ////////////////////////////////
+  renderTextInput = ({
+    input,
+    meta,
+    label,
+    type = "text",
+    placeholder = ""
+  }) => {
     return (
       <FormGroup>
         {label ? <Label>{label}</Label> : null}
@@ -38,7 +50,7 @@ class CreateRecipe extends Component {
         {this.renderError(meta)}
       </FormGroup>
     );
-  }
+  };
 
   renderError({ error, touched }) {
     if (touched && error) {
@@ -47,8 +59,8 @@ class CreateRecipe extends Component {
           <div className="error">{error}</div>
         </div>
       );
-    };
-  };
+    }
+  }
 
   renderCheckboxInput({ input }) {
     return (
@@ -88,6 +100,7 @@ class CreateRecipe extends Component {
     let typeInputs = [];
     let itemCount =
       type === "ingredient" ? ingredientInputCount : stepInputCount;
+    let name = type === "ingredient" ? 'name' : 'description';
 
     for (let i = 0; i < itemCount; i++) {
       typeInputs.push(
@@ -97,7 +110,7 @@ class CreateRecipe extends Component {
               <Field
                 key={`${type}-${i}`}
                 component={this.renderTextInput}
-                name={`recipe[${type}s][${i}]`}
+                name={`recipe[${type}s_attributes][${i}][${name}]`}
                 placeholder={placeholderText}
               />
             </Col>
@@ -121,9 +134,25 @@ class CreateRecipe extends Component {
   }
 
   onSubmit(formValues) {
-
+    // Remove Ingredients and Steps deleted during recipe creation.
+    const { currentUser } = this.props;
+    const { removedIngredientIndex, removedStepIndex } = this.state;
+    if (removedIngredientIndex.length > 0) {
+      formValues.recipe.ingredients_attributes = formValues.recipe.ingredients_attributes.filter(
+        (val, index, arr) => !removedIngredientIndex.includes(index)
+      );
+    }
+    if (removedStepIndex.length > 0) {
+      formValues.recipe.steps_attributes = formValues.recipe.steps_attributes.filter(
+        (val, index, arr) => !removedStepIndex.includes(index)
+      );
+    }
+    this.props.createRecipe(currentUser,formValues);
   }
 
+  //////////////////////////////////
+  // CreateRecipe Component Render
+  //////////////////////////////////
   render() {
     const { removedIngredientIndex, removedStepIndex } = this.state;
     let ingredientInputs = this.renderInputs("ingredient", "ex. 1Cup of Milk");
@@ -141,7 +170,10 @@ class CreateRecipe extends Component {
             md={{ size: 8, offset: 2 }}
             lg={{ size: 6, offset: 3 }}
           >
-            <Form className="create-recipe__form text-left">
+            <Form
+              onSubmit={this.props.handleSubmit(this.onSubmit)}
+              className="create-recipe__form text-left"
+            >
               <Field name="recipe[image]" component={FieldFileInput} />
               <Field
                 component={this.renderTextInput}
@@ -198,27 +230,39 @@ class CreateRecipe extends Component {
   }
 }
 
+//////////////////////////////////
 // Validations
+//////////////////////////////////
 const validate = formValues => {
   const errors = { recipe: {} };
   if (formValues.recipe) {
-    const {recipe} = formValues;
+    const { recipe } = formValues;
     if (!recipe.title) {
-      errors.recipe.title = 'You must enter a title';
+      errors.recipe.title = "You must enter a title";
     }
     if (recipe.title && recipe.title.length > 100) {
-      errors.recipe.title = "Max length is 100 characters"
+      errors.recipe.title = "Max length is 100 characters";
     }
 
     if (!recipe.description) {
-      errors.recipe.description = 'You must enter a description';
+      errors.recipe.description = "You must enter a description";
     }
     if (recipe.description && recipe.description.length > 1500) {
-      errors.recipe.description = "Max length is 100 characters"
+      errors.recipe.description = "Max length is 100 characters";
     }
   }
 
   return errors;
 };
 
-export default reduxForm({ form: "recipeCreate", validate: validate })(CreateRecipe);
+const formWrapped = reduxForm({ form: "recipeCreate", validate: validate })(
+  CreateRecipe
+);
+
+const mapStateToProps = state => {
+  return {
+    currentUser: state.currentUser
+  }
+};
+
+export default connect(mapStateToProps, { createRecipe })(formWrapped);

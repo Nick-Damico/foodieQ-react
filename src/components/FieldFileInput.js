@@ -10,19 +10,14 @@ class FieldFileInput extends Component {
     const {
       input: { onChange }
     } = this.props;
-    let imageFile = e.target.files[0];
-    let image = {};
-    for (let key in imageFile) {
-      image[key] = imageFile[key];
-    }
-    onChange(image);
+    onChange(e.target.files[0]);
   }
 
   render() {
     const {
       input: { value }
     } = this.props;
-    const { input, label, required, meta } = this.props; 
+    const { input, label, required, meta } = this.props;
     return (
       <div>
         <label>{label}</label>

@@ -1,4 +1,4 @@
-import { CREATE_RECIPE } from "../actions/types";
+import { CREATE_RECIPE, SET_SELECTED_RECIPE } from "../actions/types";
 const INITIAL_STATE = {
   recipes: [],
   selectedRecipe: null
@@ -6,7 +6,8 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CREATE_RECIPE:
+    case SET_SELECTED_RECIPE:
+      return {...state, selectedRecipe: action.payload.data}
       break;
     default:
       return state;
