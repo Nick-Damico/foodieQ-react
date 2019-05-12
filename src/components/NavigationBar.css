@@ -17,6 +17,10 @@
 }
 
 /* Navigation */
+.navbar-light {
+  background-color: var(--nav-bar-light) !important;
+}
+
 .nav-link,
 .nav-button {
   margin-right: 4px;
@@ -30,19 +34,20 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-.nav-link {
-  border-bottom: 2px solid white;
+a.nav-link {
+  border-bottom: 2px solid var(--nav-bar-light);
 }
 
 .nav-item:hover .nav-link,
 .nav-link:focus,
-.nav-link:active {
+.nav-link:active,
+.selected.nav-link {
   color: var(--foodieq-blue) !important;
   border-bottom: 2px solid var(--foodieq-blue);
   outline: none;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 615px) {
   .nav-link,
   .nav-button {
     position: initial;

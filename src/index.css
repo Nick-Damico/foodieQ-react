@@ -27,6 +27,8 @@
 
   --google-red:          #EF4759;
   --google-drk-red:      #C51F31;
+
+  --nav-bar-light:       #F1F2F3;
 }
 /* Removes 2px of horizontal scroll currently showing up with hiding 'login',
 'sign up' button on navigation bar, mobile only */
