@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Navbar, Nav, NavItem } from "reactstrap";
 import SignOutButton from "./users/SignOutButton";
 import { connect } from "react-redux";
@@ -30,27 +30,29 @@ class NavigationBar extends Component {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <Link to="/recipes" className="nav-link">
+          <NavLink
+            to="/recipes" className="nav-link">
             Find a Recipe
-          </Link>
+          </NavLink>
         </NavItem>
         <NavItem>
-          <Link
+          <NavLink
             to="/signup"
             className="btn nav-button signup-button text-white"
+            activeClassName="selected"
             onClick={() => this.props.toggleSignUpOverlay()}
           >
             Sign Up
-          </Link>
+          </NavLink>
         </NavItem>
         <NavItem>
-          <Link
+          <NavLink
             to="/login"
             className="btn nav-button login-button text-white"
             onClick={() => this.props.toggleLogInOverlay()}
           >
             Log In
-          </Link>
+          </NavLink>
         </NavItem>
       </Nav>
     );
@@ -60,19 +62,34 @@ class NavigationBar extends Component {
     return (
       <Nav className="ml-auto" navbar>
         <NavItem>
-          <Link to="/recipes" className="nav-link">
+          <NavLink
+            to="/recipes"
+            className="nav-link"
+            activeClassName="selected"
+            exact={true}
+          >
             <FontAwesomeIcon icon="book" className="book" /> Recipes
-          </Link>
+          </NavLink>
         </NavItem>
         <NavItem>
-          <Link to="/recipes/new" className="nav-link text-black">
+          <NavLink
+            to="/recipes/new"
+            className="nav-link text-black"
+            activeClassName="selected"
+            exact={true}
+          >
             Create Recipe
-          </Link>
+          </NavLink>
         </NavItem>
         <NavItem>
-          <Link to="/blogs" className="nav-link text-black">
+          <NavLink
+            to="/blogs"
+            className="nav-link text-black"
+            activeClassName="selected"
+            exact={true}
+          >
             Cooking Blogs
-          </Link>
+          </NavLink>
         </NavItem>
         <NavItem>
           <SignOutButton />
@@ -91,9 +108,9 @@ class NavigationBar extends Component {
           <div className="hamburger-nav__bar2" />
           <div className="hamburger-nav__bar3" />
         </div>
-        <Link to="/">
+        <NavLink to="/">
           <img className="brand-logo" src={logo} alt="Foodie Q" />
-        </Link>
+        </NavLink>
         {isSignedIn ? this.loggedInLinks() : this.loggedOutLinks()}
       </Navbar>
     );

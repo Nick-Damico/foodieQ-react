@@ -40,7 +40,8 @@ a.nav-link {
 
 .nav-item:hover .nav-link,
 .nav-link:focus,
-.nav-link:active {
+.nav-link:active,
+.selected.nav-link {
   color: var(--foodieq-blue) !important;
   border-bottom: 2px solid var(--foodieq-blue);
   outline: none;
