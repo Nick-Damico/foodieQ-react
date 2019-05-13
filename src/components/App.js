@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import WelcomePage from "./pages/WelcomePage";
 import SiteOverlay from "./overlay/SiteOverlay";
 import SidePanel from "./sidepanel/SidePanel";
+import IndexRecipes from "./recipes/IndexRecipes";
 import CreateRecipe from "./recipes/CreateRecipe";
 import Footer from "./Footer";
 import { TweenMax, Back } from "gsap/TweenMax";
@@ -64,6 +65,7 @@ class App extends Component {
               ) : (
                 <Route exact path="/" component={LandingPage} />
               )}
+              <Route exact path="/recipes" component={IndexRecipes} />
               <Route exact path="/recipes/new" component={CreateRecipe} />
               {this.props.isOverlayOpen ? <SiteOverlay /> : null}
             </main>
