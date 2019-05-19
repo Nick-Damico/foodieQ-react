@@ -2,14 +2,14 @@ import axios from 'axios';
 import { buildGoogleUser } from "./actionHelpers";
 import { apiUrl } from './api';
 import {
-  APP_SIGN_IN,
+  SIGN_IN,
   SET_CURRENT_USER,
   TOGGLE_OVERLAY_OFF
 } from "./types";
 
 export const googleSignIn = () => {
   return dispatch => {
-    dispatch({ type: APP_SIGN_IN });
+    dispatch({ type: SIGN_IN });
   };
 };
 

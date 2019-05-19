@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_CURRENT_USER, TOGGLE_OVERLAY, APP_SIGN_OUT } from "./types";
+import { SET_CURRENT_USER, TOGGLE_OVERLAY, SIGN_IN, APP_SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
 import { apiUrl } from './api';
@@ -9,12 +9,11 @@ export const logInUser = user => {
     await axios
       .post(`${apiUrl}/auth`, { user: user })
       .then(response => {
-        processResponse(dispatch, response);
-        dispatch({ type: TOGGLE_OVERLAY });
+        dispatch({ type: SIGN_IN, payload: response });
       })
-      .catch(error => {
-        processResponse(dispatch, error.response);
-      });
+      // .catch(error => {
+      //   processResponse(dispatch, error.response);
+      // });
   };
 };
 

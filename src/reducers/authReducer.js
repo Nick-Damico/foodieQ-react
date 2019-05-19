@@ -1,5 +1,5 @@
 import {
-  APP_SIGN_IN,
+  SIGN_IN,
   APP_SIGN_OUT,
   APP_SIGN_IN_ERROR,
   TOGGLE_OVERLAY,
@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case APP_SIGN_IN:
+    case SIGN_IN:
       return { ...INITIAL_STATE, isSignedIn: true };
     case APP_SIGN_OUT:
       return { ...state, isSignedIn: false };

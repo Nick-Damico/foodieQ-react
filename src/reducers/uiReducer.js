@@ -3,7 +3,8 @@ import {
   TOGGLE_LOGIN_OVERLAY,
   TOGGLE_SIGNUP_OVERLAY,
   TOGGLE_OVERLAY_OFF,
-  TOGGLE_SIDE_PANEL
+  TOGGLE_SIDE_PANEL,
+  SIGN_IN
 } from "../actions/types";
 const INITIAL_STATE = {
   overlay: {
@@ -18,6 +19,7 @@ const INITIAL_STATE = {
 
 const uiReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case SIGN_IN:
     case TOGGLE_OVERLAY:
       return {
         ...state,
