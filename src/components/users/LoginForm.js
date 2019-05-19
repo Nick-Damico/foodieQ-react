@@ -66,7 +66,7 @@ class LoginForm extends Component {
           </FormGroup>
           <Button className="login-button" size="lg" block>
             Login
-          </Button>        
+          </Button>
         </Form>
       </div>
     );
