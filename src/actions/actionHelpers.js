@@ -1,4 +1,4 @@
-import { SIGN_IN, APP_SIGN_IN_ERROR, SET_CURRENT_USER } from "./types";
+import { SIGN_IN, SIGN_IN_ERROR } from "./types";
 
 export const buildGoogleUser = user => {
   let profile = user.getBasicProfile();
@@ -18,12 +18,11 @@ export const successfulResponse = (dispatch, response) => {
   if (response.data.token) {
     localStorage.setItem("foodieq-token", response.data.token);
   }
-  dispatch({ type: SIGN_IN });
-  dispatch({ type: SET_CURRENT_USER, payload: response });
+  dispatch({ type: SIGN_IN, payload: response });
 };
 
 export const errorResponse = (dispatch, response) => {
-  dispatch({ type: APP_SIGN_IN_ERROR, payload: response });
+  dispatch({ type: SIGN_IN_ERROR, payload: response });
 };
 
 export const processResponse = (dispatch, response) => {
