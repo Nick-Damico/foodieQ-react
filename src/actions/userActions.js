@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_CURRENT_USER, TOGGLE_OVERLAY, SIGN_IN, SIGN_OUT } from "./types";
+import { TOGGLE_OVERLAY, SIGN_IN, SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
 import { apiUrl } from './api';
@@ -49,7 +49,7 @@ export const jwtLogin = token => {
     await axios
       .post(`${apiUrl}/jwt-login`, {}, { headers: { Authorization: "Bearer " + token } })
       .then(response => {
-        processResponse(dispatch, response);
+        dispatch({ action: SIGN_IN, payload: response })
       })
       .catch(error => {});
   };
@@ -61,5 +61,5 @@ export const signOut = () => {
 };
 
 export const setCurrentUser = () => {
-  return { type: SET_CURRENT_USER };
+  return { type: SIGN_IN };
 };
