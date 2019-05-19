@@ -1,6 +1,5 @@
 import "./loginForm.css";
 import React, { Component } from "react";
-import GoogleAuth from "./GoogleAuth";
 import FormErrors from "./FormErrors";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import { Redirect, Link } from "react-router-dom";
@@ -67,19 +66,7 @@ class LoginForm extends Component {
           </FormGroup>
           <Button className="login-button" size="lg" block>
             Login
-          </Button>
-          <GoogleAuth text={"Login with Google"} />
-          <br />
-          Not a member?{" "}
-          <Link to="/signup">
-            <Button
-              onClick={this.props.toggleSignUpOverlay}
-              className="signup-button"
-              size="sm"
-            >
-              Sign Up
-            </Button>
-          </Link>
+          </Button>        
         </Form>
       </div>
     );
