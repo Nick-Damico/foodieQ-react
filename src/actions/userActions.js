@@ -22,8 +22,7 @@ export const signUpUser = user => {
     await axios
       .post(`${apiUrl}/signup`, { user: user })
       .then(response => {
-        processResponse(dispatch, response);
-        dispatch({ action: TOGGLE_OVERLAY });
+        dispatch({ type: SIGN_IN, payload: response })
       })
       .catch(error => {
         // Below the error messages coming from the Api Server is structured
