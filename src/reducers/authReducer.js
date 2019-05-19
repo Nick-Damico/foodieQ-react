@@ -1,6 +1,6 @@
 import {
   SIGN_IN,
-  APP_SIGN_OUT,
+  SIGN_OUT,
   APP_SIGN_IN_ERROR,
   TOGGLE_OVERLAY,
   TOGGLE_LOGIN_OVERLAY,
@@ -15,7 +15,7 @@ export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case SIGN_IN:
       return { ...INITIAL_STATE, isSignedIn: true };
-    case APP_SIGN_OUT:
+    case SIGN_OUT:
       return { ...state, isSignedIn: false };
     case APP_SIGN_IN_ERROR:
       return {

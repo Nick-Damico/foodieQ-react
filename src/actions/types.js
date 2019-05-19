@@ -1,6 +1,6 @@
 //  AUTH ACTIONS
 export const SIGN_IN = "SIGN_IN";
-export const APP_SIGN_OUT = "APP_SIGN_OUT";
+export const SIGN_OUT = "SIGN_OUT";
 export const APP_SIGN_IN_ERROR = "APP_SIGN_IN_ERROR";
 
 // CURRENT USER ACTIONS

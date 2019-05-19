@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_CURRENT_USER, TOGGLE_OVERLAY, SIGN_IN, APP_SIGN_OUT } from "./types";
+import { SET_CURRENT_USER, TOGGLE_OVERLAY, SIGN_IN, SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
 import { apiUrl } from './api';
@@ -57,7 +57,7 @@ export const jwtLogin = token => {
 
 export const signOut = () => {
   localStorage.removeItem("foodieq-token");
-  return { type: APP_SIGN_OUT };
+  return { type: SIGN_OUT };
 };
 
 export const setCurrentUser = () => {
