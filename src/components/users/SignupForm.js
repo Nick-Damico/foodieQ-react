@@ -78,6 +78,20 @@ class SignUp extends Component {
             Sign Up
           </Button>
         </Form>
+        <Row>
+          <Col xs={{ size: 12 }} className="google-auth__col">                        
+            Already a member?{" "}
+            <Link to="/login">
+              <Button
+                onClick={this.props.toggleLogInOverlay}
+                className="login-button"
+                size="sm"
+              >
+                Login
+              </Button>
+            </Link>
+          </Col>
+        </Row>
       </div>
     );
   }
