@@ -5,7 +5,7 @@ import { Button, Form, FormGroup, Input } from "reactstrap";
 import { Redirect, Link } from "react-router-dom";
 import { TweenMax, Power1 } from "gsap/TweenMax";
 import { connect } from "react-redux";
-import { logInUser, setCurrentUser, toggleSignUpOverlay } from "../../actions";
+import { logInUser, toggleSignUpOverlay } from "../../actions";
 
 class LoginForm extends Component {
   formContainer = null;
@@ -67,6 +67,17 @@ class LoginForm extends Component {
           <Button className="login-button" size="lg" block>
             Login
           </Button>
+          <br />
+          Not a member?{" "}
+          <Link to="/signup">
+            <Button
+              onClick={this.props.toggleSignUpOverlay}
+              className="signup-button"
+              size="sm"
+            >
+              Sign Up
+            </Button>
+          </Link>
         </Form>
       </div>
     );
@@ -82,5 +93,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logInUser, setCurrentUser, toggleSignUpOverlay }
+  { logInUser, toggleSignUpOverlay }
 )(LoginForm);
