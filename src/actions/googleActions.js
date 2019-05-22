@@ -2,9 +2,7 @@ import axios from 'axios';
 import { buildGoogleUser } from "./actionHelpers";
 import { apiUrl } from './api';
 import {
-  SIGN_IN,
-  SET_CURRENT_USER,
-  TOGGLE_OVERLAY_OFF
+  SIGN_IN
 } from "./types";
 
 export const googleSignIn = () => {
@@ -21,8 +19,7 @@ export const logInGoogleUser = user => {
     });
     if (response.status === 200) {
       localStorage.setItem("foodieq-token", response.data.token);
-      dispatch({ type: SET_CURRENT_USER, payload: googleUser });
-      dispatch({ type: TOGGLE_OVERLAY_OFF });
+      dispatch({ type: SIGN_IN, payload: googleUser });
     }
   };
 };
