@@ -1,5 +1,5 @@
 import axios from "axios";
-import { TOGGLE_OVERLAY, SIGN_IN, SIGN_OUT } from "./types";
+import { SIGN_IN, SIGN_OUT } from "./types";
 // dispatch actions stored in actionHelpers to remove repeated code.
 import { processResponse } from "./actionHelpers";
 import { apiUrl } from './api';
