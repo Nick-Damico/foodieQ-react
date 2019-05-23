@@ -3,7 +3,7 @@ import { buildGoogleUser } from "./actionHelpers";
 import { apiUrl } from "./api";
 import { SIGN_IN } from "./types";
 
-export const logInGoogleUser = user => {
+export const googleSignIn = user => {
   const googleUser = buildGoogleUser(user);
   return dispatch => {
     axios
