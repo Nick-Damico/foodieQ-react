@@ -1,6 +1,7 @@
 import "./loginForm.css";
 import React, { Component } from "react";
 import FormErrors from "./FormErrors";
+import GoogleAuth from "./GoogleAuth";
 import { Button, Form, FormGroup, Input } from "reactstrap";
 import { Redirect, Link } from "react-router-dom";
 import { TweenMax, Power1 } from "gsap/TweenMax";
@@ -67,6 +68,7 @@ class LoginForm extends Component {
           <Button className="login-button" size="lg" block>
             Login
           </Button>
+          <GoogleAuth text={"Login with Google"} />
           <br />
           Not a member?{" "}
           <Link to="/signup">
