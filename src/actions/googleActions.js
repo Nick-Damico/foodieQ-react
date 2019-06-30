@@ -8,11 +8,16 @@ export const googleSignIn = user => {
   return dispatch => {
     axios
       .post(`${apiUrl}/auth/google`, {
-        user: { email: googleUser["data"]["user"]["email"] }
+        user: {
+          email: googleUser["data"]["user"]["email"]
+        }
       })
       .then(response => {
         localStorage.setItem("foodieq-token", response.data.token);
-        dispatch({ type: SIGN_IN, payload: googleUser });
+        dispatch({
+          type: SIGN_IN,
+          payload: googleUser
+        });
       });
   };
 };

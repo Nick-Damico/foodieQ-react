@@ -22,7 +22,7 @@ class GoogleAuth extends Component {
   onAuthChange = isSignedIn => {
     if (isSignedIn) {
       const user = this.auth.currentUser.get();
-      this.props.logInGoogleUser(user);
+      this.props.googleSignIn(user);
     }
   };
 
