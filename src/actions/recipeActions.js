@@ -1,5 +1,11 @@
-import { CREATE_RECIPE, SET_SELECTED_RECIPE } from "./types";
-import { apiUrl } from "./api";
+import {
+  CREATE_RECIPE,
+  SET_SELECTED_RECIPE,
+  ALL_RECIPES
+} from "./types";
+import {
+  apiUrl
+} from "./api";
 import axios from "axios";
 
 const authHeader = token => {
@@ -30,7 +36,26 @@ export const createRecipe = (user, formValues) => async dispatch => {
           authHeader(foodieqToken)
         )
         .then(res => {
-          dispatch({ type: SET_SELECTED_RECIPE, payload: res.data });
+          dispatch({
+            type: SET_SELECTED_RECIPE,
+            payload: res.data
+          });
         });
+    });
+};
+
+
+export const allRecipes = () => async dispatch => {
+  const foodieqToken = localStorage.getItem("foodieqToken")
+  const response = await axios
+    .get(
+      `${apiUrl}/recipes`,
+      authHeader(foodieqToken)
+    )
+    .then(res => {
+      dispatch({
+        type: ALL_RECIPES,
+        payload: res.data
+      })
     });
 };
